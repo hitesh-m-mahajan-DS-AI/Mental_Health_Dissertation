@@ -1,0 +1,47 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local editor and OS state
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and machine-local configuration
+.env
+.env.*
+*.key
+*.pem
+
+# Frozen research datasets are local inputs. Public redistribution requires
+# an explicit licence/privacy decision.
+*.csv
+
+# Model checkpoints are local-only. GitHub rejects normal files over 100 MiB,
+# and several checkpoint shards exceed the GitHub Free LFS per-file limit.
+model/
+*.safetensors
+*.pth
+*.pt
+*.bin
+*.gguf
+
+# Generated activations, temporary offload weights, logs, and other outputs.
+results/**
+!results/activations/
+results/activations/**
+!results/activations/metadata/
+results/activations/metadata/**
+!results/activations/metadata/checkpoint_report_*.md
+logs/
+*.log
+
+# Accidental nested clone found in the workspace; preserve locally but never
+# embed a second Git repository in this project.
+Mental_Health_Dissertation/
