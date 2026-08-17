@@ -54,10 +54,10 @@ The selected empathy responses all fit within 128 tokens. Two selected motivatio
 responses were longer than 128 tokens and were explicitly truncated at the declared
 sequence length. The capture manifest records those cases.
 
-## Later analysis stages
+## Completed linear probing
 
-The stored activations provide the input for two independent sets of linear probes:
-one for motivation and one for empathy. A separate probe will be trained for every
+The stored activations were used for two independent sets of linear probes:
+one for motivation and one for empathy. A separate probe was trained for every
 selected layer, using the same examples at each layer. Conversation-grouped 70/15/15
 train/validation/test splits will prevent responses from the same transcript or
 dialogue appearing in more than one split. The primary probe uses the final valid
@@ -65,6 +65,25 @@ response token; a sensitivity analysis uses the mean response-token activation.
 Accuracy and macro-F1 will be reported alongside shuffled-label and layer-0
 baselines and a label-permutation significance test. Probing shows where information
 is represented; it does not prove that the model causally uses that information.
+
+For motivation, the primary final-token probe rises from layer-0 macro-F1 0.483 to a
+descriptive peak of 0.825 at depth 16. Later depths pass both the shuffled-label and
+layer-0 permutation criteria. The mean-token sensitivity probe starts from a much
+stronger layer-0 macro-F1 of 0.825 and peaks descriptively at 0.891; only depth 15
+significantly improves over that strong baseline. The motivation test split contains
+only two non-motivational responses because the approved random sample is naturally
+imbalanced, so these scores have coarse resolution and must be interpreted cautiously.
+
+For empathy, the primary final-token probe rises from layer-0 macro-F1 0.400 to a
+descriptive peak of 0.961 at depth 16, with every transformer-block output depth 1-32
+passing both permutation criteria. The mean-token sensitivity probe is already strong
+at layer 0 (macro-F1 0.841) and peaks descriptively at 0.961; it beats shuffled labels
+but does not significantly improve over its strong layer-0 baseline.
+
+These findings establish linear decodability, not causality. Descriptive peak layers
+are not yet final circuit selections.
+
+## Later analysis stages
 
 Activation patching will then rerun reproducible clean/corrupted response pairs and
 intervene on candidate residual, attention, and MLP components. This tests causal
@@ -84,9 +103,9 @@ comparable, Spearman correlation will quantify cross-method agreement.
 
 ## Important status boundary
 
-The 128-token 200+200 activation-capture stage is complete. Linear probing, activation
-patching, SAE analysis, cross-method agreement, and the final circuit atlas are
-subsequent stages. Their results must not be claimed until those experiments have
-been implemented and run. Exact probe fitting/permutation settings, patching pair
-construction and target tokens, completeness/minimality definitions, and a
-compatible SAE checkpoint still require explicit methodological decisions.
+The 128-token 200+200 activation-capture and linear-probing stages are complete.
+Activation patching, SAE analysis, cross-method agreement, and the final circuit atlas
+remain subsequent stages. Their results must not be claimed until those experiments
+have been implemented and run. Patching pair construction and target tokens,
+completeness/minimality definitions, and a compatible SAE checkpoint still require
+explicit methodological decisions.

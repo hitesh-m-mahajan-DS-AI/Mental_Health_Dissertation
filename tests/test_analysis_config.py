@@ -23,7 +23,9 @@ def test_checked_in_methodology_records_fixed_probe_requirements() -> None:
 
 
 def test_incomplete_methodology_is_an_explicit_execution_block() -> None:
-    methodology = load_analysis_methodology(ROOT / "configs" / "analysis_methodology.json")
+    raw = json.loads((ROOT / "configs" / "analysis_methodology.json").read_text())
+    raw["linear_probing"]["unresolved_required"]["grouped_split_seed"] = None
+    methodology = AnalysisMethodology(path=Path("in-memory-incomplete.json"), raw=raw)
 
     with pytest.raises(ValueError, match="scientifically underspecified"):
         methodology.require_resolved("linear_probing")

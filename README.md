@@ -1,6 +1,6 @@
 # Mental-health Llama-3.1-8B mechanistic pipeline
 
-The first implemented stage is the single-entry-point activation capture workflow:
+The activation-capture workflow is:
 
 ```powershell
 python run_activation_capture.py
@@ -35,3 +35,17 @@ The supplied probing, causal-patching, SAE, and circuit-atlas methodology is rec
 in `configs/analysis_methodology.json`. Scientifically material settings that have
 not yet been specified are stored as explicit `null` values; downstream entry points
 must refuse to run until those values are resolved.
+
+The approved independent linear-probing stage is now complete for activation run
+`20260817T181608Z`:
+
+```powershell
+python run_linear_probes.py
+python run_probe_reporting.py
+```
+
+It uses group-disjoint 70/15/15 splits, final-token primary representations,
+mean-response-token sensitivity representations, validation-selected L2 logistic
+regression, 100 shuffled-label baselines, and 1,000 full label-permutation pipelines.
+Compact JSON, permutation arrays, charts, checksums, and the human-readable report are
+stored under `results/probes/`.

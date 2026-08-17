@@ -14,10 +14,19 @@ probes use conversation-grouped 70/15/15 train/validation/test splits. Accuracy 
 macro-F1 are reported with shuffled-label and layer-0 baselines, plus a label-
 permutation significance test.
 
-The run is blocked until the exact layer-0 definition, grouped split seed,
-standardisation/regularisation choices, solver settings, and shuffle/permutation
-procedures are confirmed. These choices affect the scientific result and are not
-silently defaulted.
+The approved probe preset defines layer 0 as the residual stream entering transformer
+block 0, uses grouped split seed 42, training-only standardisation, L2 logistic
+regression with `lbfgs` and a 5,000-iteration limit, and selects `C` from
+`[0.01, 0.1, 1, 10, 100]` using validation macro-F1. Class weighting is disabled so
+the natural random samples remain unchanged. The shuffled-label baseline uses 100
+repetitions and the significance distribution uses 1,000 development-label
+permutations, repeating model selection and refitting while keeping the grouped split
+fixed.
+
+This stage completed successfully for both independent tasks and both token
+aggregations. Results, charts, permutation arrays, and the final report are stored in
+`results/probes/`. Linear probing provides representational evidence only; no layer is
+treated as a causal circuit component until patching and SAE evidence are available.
 
 ## Causal patching
 

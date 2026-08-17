@@ -13,20 +13,33 @@
     "classifier": "logistic_regression",
     "split_ratios": {"train": 0.70, "validation": 0.15, "test": 0.15},
     "split_grouping": {"motivation": "transcript_id", "empathy": "dialogueId"},
+    "grouped_split_algorithm": {
+      "name": "seeded_group_assignment_search",
+      "candidate_assignments": 100000,
+      "require_both_classes_in_every_split": true,
+      "objective": "closest_sample_and_class_counts_to_70_15_15"
+    },
     "metrics": ["accuracy", "macro_f1"],
     "baselines": ["shuffled_label", "layer_0"],
     "significance": "label_permutation_test",
+    "model_selection": {
+      "selection_metric": "validation_macro_f1",
+      "tie_break": "smallest_C",
+      "refit_on_train_plus_validation": true,
+      "test_used_once_after_selection": true
+    },
+    "exact_full_rank_acceleration": "orthonormal projection onto the fitted training row-space; no rank truncation",
     "unresolved_required": {
-      "layer_0_exact_activation_definition": null,
-      "grouped_split_seed": null,
-      "feature_scaling": null,
-      "logistic_regression_penalty": null,
-      "logistic_regression_C_or_selection_grid": null,
-      "class_weight": null,
-      "solver_and_max_iterations": null,
-      "shuffled_label_repetitions": null,
-      "label_permutation_count": null,
-      "label_permutation_unit_and_retraining_procedure": null
+      "layer_0_exact_activation_definition": "layer_00.residual_pre",
+      "grouped_split_seed": 42,
+      "feature_scaling": "StandardScaler fitted on the training split only",
+      "logistic_regression_penalty": "l2",
+      "logistic_regression_C_or_selection_grid": [0.01, 0.1, 1.0, 10.0, 100.0],
+      "class_weight": "none",
+      "solver_and_max_iterations": {"solver": "lbfgs", "max_iter": 5000},
+      "shuffled_label_repetitions": 100,
+      "label_permutation_count": 1000,
+      "label_permutation_unit_and_retraining_procedure": "permute development labels across train plus validation examples with the grouped split fixed; repeat C selection, refit, and held-out test evaluation"
     }
   },
   "causal_patching": {

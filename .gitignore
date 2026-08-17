@@ -6,6 +6,7 @@ __pycache__/
 .ruff_cache/
 .venv/
 venv/
+tmp/
 
 # Local editor and OS state
 .vscode/
@@ -39,6 +40,8 @@ results/activations/**
 !results/activations/metadata/
 results/activations/metadata/**
 !results/activations/metadata/checkpoint_report_*.md
+!results/probes/
+!results/probes/**
 logs/
 *.log
 
