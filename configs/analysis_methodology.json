@@ -1,0 +1,77 @@
+{
+  "status": "partially_specified_do_not_run_until_required_nulls_are_resolved",
+  "activation_run_id": "20260817T181608Z",
+  "tasks": ["motivation", "empathy"],
+  "keep_tasks_independent": true,
+  "linear_probing": {
+    "sequence_length": 128,
+    "activation_family": "residual_stream",
+    "layers": "each_model_layer",
+    "primary_token_aggregation": "final_valid_response_token",
+    "secondary_token_aggregation": "mean_response_token_activation",
+    "exclude_special_tokens_from_response_mean": true,
+    "classifier": "logistic_regression",
+    "split_ratios": {"train": 0.70, "validation": 0.15, "test": 0.15},
+    "split_grouping": {"motivation": "transcript_id", "empathy": "dialogueId"},
+    "metrics": ["accuracy", "macro_f1"],
+    "baselines": ["shuffled_label", "layer_0"],
+    "significance": "label_permutation_test",
+    "unresolved_required": {
+      "layer_0_exact_activation_definition": null,
+      "grouped_split_seed": null,
+      "feature_scaling": null,
+      "logistic_regression_penalty": null,
+      "logistic_regression_C_or_selection_grid": null,
+      "class_weight": null,
+      "solver_and_max_iterations": null,
+      "shuffled_label_repetitions": null,
+      "label_permutation_count": null,
+      "label_permutation_unit_and_retraining_procedure": null
+    }
+  },
+  "causal_patching": {
+    "contrast": "supportive_vs_neutral",
+    "inputs": "matched_clean_corrupted_pairs",
+    "behavioural_score": "supportive_target_logit_minus_neutral_target_logit",
+    "position": "first_generated_response_position",
+    "faithfulness_equation": "(logit_diff_patched - logit_diff_corrupted) / (logit_diff_clean - logit_diff_corrupted)",
+    "faithfulness_required": true,
+    "completeness_required": true,
+    "minimality_required": true,
+    "unresolved_required": {
+      "matched_pair_construction": null,
+      "supportive_target_token_or_token_sequence": null,
+      "neutral_target_token_or_token_sequence": null,
+      "multi_token_logit_scoring_rule_if_needed": null,
+      "completeness_operational_definition": null,
+      "minimality_operational_definition": null
+    }
+  },
+  "sae": {
+    "framework": "SAELens",
+    "preferred_source": "Llama Scope",
+    "base_model": "Llama-3.1-8B Base",
+    "preferred_activation_family": "residual_stream",
+    "layer_selection": "after_probing_and_patching_evidence",
+    "required_feature_fields": ["feature_id", "sparsity_or_L0", "interpretability_score"],
+    "baseline": "random_neuron",
+    "unresolved_required": {
+      "compatible_sae_release_and_checkpoint": null,
+      "exact_layer": null,
+      "exact_hook_point": null,
+      "interpretability_scoring_protocol": null,
+      "random_neuron_baseline_repetitions": null
+    }
+  },
+  "circuit_atlas": {
+    "cross_reference": ["probing", "patching", "sae"],
+    "set_overlap_metric": "Jaccard",
+    "ranking_metric_where_comparable": "Spearman",
+    "report_disagreement": true,
+    "outputs": ["JSON", "charts", "visual_circuit_diagram", "human_readable_report"],
+    "unresolved_required": {
+      "top_component_set_definition": null,
+      "ranking_tie_handling": null
+    }
+  }
+}

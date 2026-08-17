@@ -25,8 +25,13 @@ python run_activation_capture.py --resume-run-id <RUN_ID>
 ```
 
 The configured 200+200 experiment fits the local storage budget while retaining
-all tokens up to 64 and all nine activation types at every layer. A full-population
+all tokens up to 128 and all nine activation types at every layer. A full-population
 capture would still be about 1.144 TiB and must not be started accidentally.
 
 Outputs are separated under `results/activations/motivation/` and
 `results/activations/empathy/`. Original CSV and model files are read-only inputs.
+
+The supplied probing, causal-patching, SAE, and circuit-atlas methodology is recorded
+in `configs/analysis_methodology.json`. Scientifically material settings that have
+not yet been specified are stored as explicit `null` values; downstream entry points
+must refuse to run until those values are resolved.

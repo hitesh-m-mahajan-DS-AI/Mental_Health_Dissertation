@@ -240,7 +240,7 @@ def _human_report(metadata: dict[str, Any], manifests: dict[str, str]) -> str:
             "",
             "## Methodological boundary",
             "",
-            "This run captures the configured raw response with BOS and every token up to 64. "
+            f"This run captures the configured raw response with BOS and every token up to {config.max_length}. "
             "It does not decide the later grouped train/validation/test ratios, causal corruption "
             "construction, behavioural logit definition, or SAE checkpoint/source.",
             "",
@@ -345,7 +345,7 @@ def run_capture(
         "configured_selection_storage_estimate": configured_selection_storage_estimate,
         "unresolved_scientific_choices": [
             "The configured capture uses each raw counselor/therapist response with BOS; alternative conversational context was not specified.",
-            "Every token is captured up to 64; the downstream probe token aggregation remains to be specified.",
+            f"Every token is captured up to {config.max_length}; downstream analyses must use the aggregation declared in their own configuration.",
             "Grouped train/validation/test ratios and seed for probing.",
             "Causal corruption construction and behavioural logit-difference definition.",
             "SAE source/checkpoint compatibility; sae-lens is not currently installed.",

@@ -12,7 +12,7 @@
     "0": "6800MiB",
     "cpu": "2GiB"
   },
-  "max_length": 64,
+  "max_length": 128,
   "max_examples_per_dataset": 200,
   "sampling_strategy": "uniform_random_without_replacement",
   "sampling_seeds": {
