@@ -1,0 +1,33 @@
+{
+  "project_root": "..",
+  "model_path": "model",
+  "motivation_csv": "annomi_motivation_final_candidate_v3_2.csv",
+  "empathy_csv": "MHLCD.csv",
+  "output_root": "results/activations",
+  "offload_dir": "results/model_offload",
+  "seed": 42,
+  "dtype": "bfloat16",
+  "device_map": "auto",
+  "max_memory": {
+    "0": "6800MiB",
+    "cpu": "2GiB"
+  },
+  "max_length": 64,
+  "max_examples_per_dataset": 1,
+  "token_positions": "all",
+  "add_special_tokens": true,
+  "input_format": "raw_response",
+  "capture_types": [
+    "residual_pre",
+    "residual_post",
+    "query",
+    "key",
+    "value",
+    "head_output",
+    "attention_output",
+    "mlp_activation",
+    "mlp_output"
+  ],
+  "dataset_order": ["motivation", "empathy"],
+  "smoke_test": true
+}
