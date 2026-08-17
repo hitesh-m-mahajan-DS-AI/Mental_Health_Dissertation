@@ -22,6 +22,8 @@ class CaptureConfig:
     max_memory: dict[str, str]
     max_length: int
     max_examples_per_dataset: int | None
+    sampling_strategy: str
+    sampling_seeds: dict[str, int]
     token_positions: str
     add_special_tokens: bool
     input_format: str
@@ -68,6 +70,15 @@ def load_config(path: Path) -> CaptureConfig:
     max_examples = raw.get("max_examples_per_dataset")
     if max_examples is not None and (not isinstance(max_examples, int) or max_examples < 1):
         raise ValueError("max_examples_per_dataset must be null or a positive integer")
+    sampling_strategy = str(raw.get("sampling_strategy", "source_order"))
+    if sampling_strategy not in {"source_order", "uniform_random_without_replacement"}:
+        raise ValueError(
+            "sampling_strategy must be 'source_order' or "
+            "'uniform_random_without_replacement'"
+        )
+    raw_seeds = raw.get("sampling_seeds", {"motivation": raw["seed"], "empathy": raw["seed"]})
+    if set(raw_seeds) != {"motivation", "empathy"}:
+        raise ValueError("sampling_seeds must define motivation and empathy")
 
     return CaptureConfig(
         project_root=root,
@@ -82,6 +93,8 @@ def load_config(path: Path) -> CaptureConfig:
         max_memory={str(k): str(v) for k, v in raw.get("max_memory", {}).items()},
         max_length=int(raw["max_length"]),
         max_examples_per_dataset=max_examples,
+        sampling_strategy=sampling_strategy,
+        sampling_seeds={name: int(seed) for name, seed in raw_seeds.items()},
         token_positions=str(raw["token_positions"]),
         add_special_tokens=bool(raw["add_special_tokens"]),
         input_format=str(raw["input_format"]),

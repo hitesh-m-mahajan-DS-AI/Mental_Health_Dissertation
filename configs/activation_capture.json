@@ -13,7 +13,12 @@
     "cpu": "2GiB"
   },
   "max_length": 64,
-  "max_examples_per_dataset": 1,
+  "max_examples_per_dataset": 200,
+  "sampling_strategy": "uniform_random_without_replacement",
+  "sampling_seeds": {
+    "motivation": 42,
+    "empathy": 43
+  },
   "token_positions": "all",
   "add_special_tokens": true,
   "input_format": "raw_response",
@@ -29,5 +34,5 @@
     "mlp_output"
   ],
   "dataset_order": ["motivation", "empathy"],
-  "smoke_test": true
+  "smoke_test": false
 }

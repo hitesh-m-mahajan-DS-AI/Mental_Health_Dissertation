@@ -21,13 +21,21 @@ def _json_dump(path: Path, value: Any) -> None:
 
 
 class DatasetWriter:
-    def __init__(self, output_root: Path, dataset: str, run_id: str) -> None:
+    def __init__(
+        self, output_root: Path, dataset: str, run_id: str, resume: bool = False
+    ) -> None:
         self.root = output_root / dataset
         self.run_id = run_id
         for name in ["residual_stream", "attention", "mlp", "metadata"]:
             (self.root / name).mkdir(parents=True, exist_ok=True)
         self.metadata_path = self.root / "metadata" / f"{run_id}_examples.jsonl"
         self.records: list[dict[str, Any]] = []
+        if resume and self.metadata_path.is_file():
+            self.records = [
+                json.loads(line)
+                for line in self.metadata_path.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
 
     def write_example(
         self,
