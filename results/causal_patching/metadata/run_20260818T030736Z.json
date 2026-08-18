@@ -26,7 +26,7 @@
     }
   },
   "run_id": "20260818T030736Z",
-  "status": "smoke_test_complete",
+  "status": "layer_patching_complete",
   "supportive_target": " I",
   "tokenizer": {
     "bos_token": "<|begin_of_text|>",

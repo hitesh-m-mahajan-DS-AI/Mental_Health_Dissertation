@@ -40,18 +40,30 @@ at the first generated response position. Faithfulness is:
 (logit_diff(clean)   - logit_diff(corrupted))
 ```
 
-Faithfulness, completeness, and minimality are all required. Pair construction,
-the exact supportive and neutral target token sequences, multi-token scoring (if
-needed), and operational completeness/minimality definitions remain unresolved.
+The corrected layer-patching run `20260818T030736Z` completed 200 records for each
+task. It patches only the final valid prompt position, uses task-specific
+supportive/neutral instructions, and reports the fixed `" I" - " Okay"` first-token
+logit contrast. One motivation record has a zero clean-minus-corrupted denominator
+and is explicitly excluded from normalised faithfulness aggregation.
+
+Layer 16 was retained for tractable component refinement because both corrected
+causal confidence intervals exclude zero there and the pinned SAE is available at
+that layer. Whole attention and MLP outputs were evaluated independently. This is
+an induced component universe, not a head-, neuron-, position-, or feature-complete
+circuit; no broader completeness claim is made.
 
 ## SAE and circuit atlas
 
-SAELens with a compatible Llama Scope residual-stream SAE is preferred for the
-local Llama-3.1-8B Base model. The layer is selected only after probing and patching
-evidence. Feature ID, sparsity/L0, interpretability score, and a random-neuron
-baseline are required.
+The pinned Llama Scope `l16r_8x` residual-stream SAE (revision
+`8dbc1d85edfced43081c03c38b05514dbab1368b`) was run through SAELens at layer 16.
+Both tasks have 200 sparse records, ranked feature IDs, activation frequency/L0,
+bootstrap intervals, and 1,000 matched random-neuron baseline samples.
+Interpretability scores remain explicitly null pending blinded human review of top
+activating examples; they are not silently inferred from feature magnitude.
 
 The final atlas cross-references probing, patching, and SAE evidence. It reports
 Jaccard overlap, Spearman correlation only where rankings are genuinely comparable,
-and all disagreements. The exact compatible SAE checkpoint and comparison-set
-definitions remain to be established.
+and all disagreements. The completed atlas uses shared layer coordinates only and
+keeps SAE feature IDs as provenance. Probe–patching Jaccard is 0.818 (motivation)
+and 0.806 (empathy). Spearman is unavailable rather than fabricated because the
+required shared ranked coordinates are absent.

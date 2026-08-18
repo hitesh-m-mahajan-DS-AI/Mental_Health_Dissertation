@@ -78,6 +78,7 @@ def _plot(summary: dict[str, Any], dataset: str, run_id: str, path: Path) -> Non
 
 def generate_causal_report(config: CausalPatchingConfig, run_id: str) -> dict[str, Any]:
     combined: dict[str, Any] = {
+        "summary_kind": "corrected_causal_patching",
         "run_id": run_id,
         "activation_run_id": config.activation_run_id,
         "datasets": {},

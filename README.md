@@ -31,10 +31,10 @@ capture would still be about 1.144 TiB and must not be started accidentally.
 Outputs are separated under `results/activations/motivation/` and
 `results/activations/empathy/`. Original CSV and model files are read-only inputs.
 
-The supplied probing, causal-patching, SAE, and circuit-atlas methodology is recorded
-in `configs/analysis_methodology.json`. Scientifically material settings that have
-not yet been specified are stored as explicit `null` values; downstream entry points
-must refuse to run until those values are resolved.
+The supplied probing, causal-patching, SAE, component-refinement, and circuit-atlas
+methodology is recorded in `configs/` and `docs/`. The approved 200+200 workflow is
+complete; compact results and reports are checked in while the model, datasets,
+activation tensors, caches, and SAE checkpoint remain local and ignored.
 
 The approved independent linear-probing stage is now complete for activation run
 `20260817T181608Z`:
@@ -62,8 +62,25 @@ The causal-patching protocol and its interpretation limits are documented in
 python run_causal_patching.py --inspect-only
 ```
 
-Run or resume the full experiment with:
+The valid corrected run is `20260818T030736Z`. Run or resume it with:
 
 ```powershell
-python run_causal_patching.py --resume-run-id 20260818T020527Z
+python run_causal_patching.py --resume-run-id 20260818T030736Z
 ```
+
+Run `20260818T020527Z` is retained only as an invalidated diagnostic: it restored
+the whole prompt residual tensor and therefore could not localise causal layers.
+
+## Completed downstream analyses
+
+- Corrected causal patching: 200 motivation + 200 empathy records, 32 layers.
+- SAE: pinned Llama Scope `l16r_8x` at layer 16, 200+200 sparse encodings,
+  50 ranked features per task/aggregation, and 1,000-draw random-neuron baselines.
+- Component refinement: whole attention and MLP outputs at layer 16. Motivation
+  ranks MLP first; empathy ranks attention first.
+- Circuit atlas: probe–patching Jaccard is 0.818 for motivation and 0.806 for
+  empathy. SAE overlaps at layer 16. Spearman is explicitly unavailable because
+  the probe summary has no complete layer ranking and the SAE covers one layer.
+
+See `docs/final_results_status.md` for artifact locations, reproducibility IDs,
+scientific limitations, and the remaining dissertation-writing boundary.
