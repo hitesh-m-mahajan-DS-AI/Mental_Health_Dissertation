@@ -52,12 +52,12 @@
     "completeness_required": true,
     "minimality_required": true,
     "unresolved_required": {
-      "matched_pair_construction": null,
-      "supportive_target_token_or_token_sequence": null,
-      "neutral_target_token_or_token_sequence": null,
-      "multi_token_logit_scoring_rule_if_needed": null,
-      "completeness_operational_definition": null,
-      "minimality_operational_definition": null
+      "matched_pair_construction": "hold client context fixed; contrast equal-structure supportive versus neutral response-style instructions",
+      "supportive_target_token_or_token_sequence": " I (single tokenizer token ID 358)",
+      "neutral_target_token_or_token_sequence": " Okay (single tokenizer token ID 36539)",
+      "multi_token_logit_scoring_rule_if_needed": "not applicable; both fixed targets are single tokens",
+      "completeness_operational_definition": "after residual-layer localization is refined into computational nodes, evaluate Wang et al. incompleteness |F(C\\K)-F(M\\K)| using random subsets, semantic component groups, and greedy-search subsets K",
+      "minimality_operational_definition": "for every refined circuit node v, search K subset C without v and report |F(C\\(K union {v}))-F(C\\K)|, including the fraction of full-model clean-corrupted logit difference"
     }
   },
   "sae": {

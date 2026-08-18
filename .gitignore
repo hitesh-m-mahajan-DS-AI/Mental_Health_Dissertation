@@ -42,6 +42,16 @@ results/activations/metadata/**
 !results/activations/metadata/checkpoint_report_*.md
 !results/probes/
 !results/probes/**
+!results/causal_patching/
+results/causal_patching/**
+!results/causal_patching/metadata/
+!results/causal_patching/metadata/*.json
+!results/causal_patching/motivation/
+!results/causal_patching/motivation/metadata/
+!results/causal_patching/motivation/metadata/*.jsonl
+!results/causal_patching/empathy/
+!results/causal_patching/empathy/metadata/
+!results/causal_patching/empathy/metadata/*.jsonl
 logs/
 *.log
 

@@ -49,3 +49,21 @@ mean-response-token sensitivity representations, validation-selected L2 logistic
 regression, 100 shuffled-label baselines, and 1,000 full label-permutation pipelines.
 Compact JSON, permutation arrays, charts, checksums, and the human-readable report are
 stored under `results/probes/`.
+## Causal activation patching
+
+The project now includes reproducible activation capture, grouped linear probing, and controlled
+causal residual-stream patching for 200 randomly selected motivation examples and 200 randomly
+selected empathy examples using the exact local Llama-3.1-8B Base checkpoint.
+
+The causal-patching protocol and its interpretation limits are documented in
+`docs/causal_patching_protocol.md`. Run an audit-only preflight with:
+
+```powershell
+python run_causal_patching.py --inspect-only
+```
+
+Run or resume the full experiment with:
+
+```powershell
+python run_causal_patching.py --resume-run-id 20260818T020527Z
+```
