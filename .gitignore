@@ -52,6 +52,11 @@ results/causal_patching/**
 !results/causal_patching/empathy/
 !results/causal_patching/empathy/metadata/
 !results/causal_patching/empathy/metadata/*.jsonl
+!results/causal_patching/metadata/*.md
+!results/causal_patching/motivation/*.json
+!results/causal_patching/motivation/*.png
+!results/causal_patching/empathy/*.json
+!results/causal_patching/empathy/*.png
 logs/
 *.log
 
