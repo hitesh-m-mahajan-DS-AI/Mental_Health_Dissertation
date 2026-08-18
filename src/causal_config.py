@@ -24,8 +24,7 @@ class CausalPatchingConfig:
     max_length: int
     datasets: tuple[str, ...]
     pair_construction: str
-    supportive_instruction: str
-    neutral_instruction: str
+    task_styles: dict[str, dict[str, str]]
     supportive_target: str
     neutral_target: str
     prompt_template: str
@@ -51,7 +50,7 @@ def load_causal_config(path: Path) -> CausalPatchingConfig:
         "datasets": ["motivation", "empathy"],
         "pair_construction": "controlled_instruction_counterfactual",
         "patch_activation": "residual_pre",
-        "patch_positions": "all_valid_prompt_tokens",
+        "patch_positions": "final_valid_prompt_token",
         "score_position": "first_generated_response_position",
         "faithfulness_equation": "(patched-corrupted)/(clean-corrupted)",
     }
@@ -82,8 +81,10 @@ def load_causal_config(path: Path) -> CausalPatchingConfig:
         max_length=int(raw["max_length"]),
         datasets=tuple(raw["datasets"]),
         pair_construction=str(raw["pair_construction"]),
-        supportive_instruction=str(raw["supportive_instruction"]),
-        neutral_instruction=str(raw["neutral_instruction"]),
+        task_styles={
+            dataset: {key: str(value) for key, value in styles.items()}
+            for dataset, styles in raw["task_styles"].items()
+        },
         supportive_target=str(raw["supportive_target"]),
         neutral_target=str(raw["neutral_target"]),
         prompt_template=str(raw["prompt_template"]),

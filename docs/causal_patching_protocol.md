@@ -8,11 +8,11 @@ observations. The tasks remain separate.
 
 ## Controlled counterfactual
 
-For each selected observation, the client context is held fixed and two equal-structure prompts
-are constructed:
+For each selected observation, the client context is held fixed and two equal-structure,
+task-specific prompts are constructed:
 
-- clean: `Instruction: Give a supportive counsellor response.`
-- corrupted: `Instruction: Give a neutral counsellor response.`
+- motivation clean/corrupted style: `motivational` / `neutral`
+- empathy clean/corrupted style: `compassionate` / `neutral`
 
 Both end with the same client context and `Counsellor:` prefix. Samples without an available
 preceding client utterance are retained using an explicit missing-context sentence; this preserves
@@ -28,9 +28,13 @@ supportive opening behaviour, not a clinical assessment of a complete generated 
 
 ## Layerwise intervention
 
-The clean residual-stream input to each transformer block is cached. For each layer in turn, that
-entire valid clean prompt residual is restored into the corrupted forward pass. All later model
-computation is recomputed. The primary normalized recovery is
+The clean residual-stream input to each transformer block is cached. The paired prompts are
+tokenizer-validated to differ at exactly one controlled style token while retaining aligned token
+positions. For each layer in turn, the primary intervention restores only the clean residual vector
+at the final valid prompt token (the `Counsellor:` position whose logits predict the first response
+token) into the corrupted forward pass. All other positions remain corrupted and all later
+computation is recomputed. Instruction-token restoration is reserved as a candidate-layer
+sensitivity analysis. The primary normalized recovery is
 
 `(patched logit difference - corrupted logit difference) /
  (clean logit difference - corrupted logit difference)`.

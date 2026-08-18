@@ -2,9 +2,12 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.pytest_tmp*/
 .mypy_cache/
 .ruff_cache/
 .venv/
+.venv-sae/
+.hf-sae/
 venv/
 tmp/
 

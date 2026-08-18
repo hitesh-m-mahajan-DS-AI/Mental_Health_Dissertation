@@ -77,11 +77,16 @@ def _capture_residual_pre(model: Any) -> Iterator[list[torch.Tensor]]:
 
 
 @contextmanager
-def _patch_residual_pre(model: Any, layer_index: int, clean: torch.Tensor) -> Iterator[None]:
+def _patch_residual_pre(
+    model: Any, layer_index: int, clean: torch.Tensor, positions: list[int]
+) -> Iterator[None]:
     layer = model.model.layers[layer_index]
 
     def hook(_module: Any, args: tuple[Any, ...]) -> tuple[Any, ...]:
-        replacement = clean.to(device=args[0].device, dtype=args[0].dtype)
+        clean_local = clean.to(device=args[0].device, dtype=args[0].dtype)
+        replacement = args[0].clone()
+        for batch_index, position in enumerate(positions):
+            replacement[batch_index, position] = clean_local[batch_index, position]
         return (replacement,) + args[1:]
 
     handle = layer.register_forward_pre_hook(hook)
@@ -118,6 +123,7 @@ def patch_batch(
     corrupted_ids = [e["corrupted_input_ids"] for e in encoded_batch]
     clean_lengths = [len(ids) for ids in clean_ids]
     corrupted_lengths = [len(ids) for ids in corrupted_ids]
+    patch_positions = [int(e["patch_position"]) for e in encoded_batch]
     with _capture_residual_pre(model) as clean_cache:
         clean_scores = _scores(
             _forward(model, clean_ids, pad_token_id), clean_lengths, supportive_id, neutral_id
@@ -129,7 +135,9 @@ def patch_batch(
     )
     patched_by_layer: list[list[float]] = []
     for layer_index in range(num_layers):
-        with _patch_residual_pre(model, layer_index, clean_cache[layer_index]):
+        with _patch_residual_pre(
+            model, layer_index, clean_cache[layer_index], patch_positions
+        ):
             logits = _forward(model, corrupted_ids, pad_token_id)
         patched_by_layer.append(
             _scores(logits, corrupted_lengths, supportive_id, neutral_id)
@@ -174,6 +182,8 @@ def _write_pair_manifest(config: CausalPatchingConfig, tokenizer: Any, dataset: 
                 "truncated": encoded["truncated"],
                 "supportive_target_id": encoded["supportive_target_id"],
                 "neutral_target_id": encoded["neutral_target_id"],
+                "controlled_position": encoded["controlled_position"],
+                "patch_position": encoded["patch_position"],
             })
             handle.write(json.dumps(record, sort_keys=True) + "\n")
     return {
@@ -276,6 +286,8 @@ def run_causal_patching(
                     "token_length": len(encoded["clean_input_ids"]),
                     "supportive_target_id": encoded["supportive_target_id"],
                     "neutral_target_id": encoded["neutral_target_id"],
+                    "controlled_position": encoded["controlled_position"],
+                    "patch_position": encoded["patch_position"],
                 })
                 path = result_dir / f"{pair.selection_ordinal:03d}_{pair.example_id}.json"
                 _write_json(path, result)

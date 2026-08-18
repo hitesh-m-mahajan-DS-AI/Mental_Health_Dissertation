@@ -75,12 +75,9 @@ def build_pairs(config: CausalPatchingConfig, dataset: str) -> tuple[Counterfact
             # Preserve the 200-query membership: an explicit neutral placeholder is
             # preferable to silently replacing a randomly selected observation.
             context = "The client has not provided any preceding message."
-        supportive = config.prompt_template.format(
-            instruction=config.supportive_instruction, context=context
-        )
-        neutral = config.prompt_template.format(
-            instruction=config.neutral_instruction, context=context
-        )
+        styles = config.task_styles[dataset]
+        supportive = config.prompt_template.format(style=styles["clean"], context=context)
+        neutral = config.prompt_template.format(style=styles["corrupted"], context=context)
         pairs.append(CounterfactualPair(
             dataset=dataset,
             selection_ordinal=int(record["selection_ordinal"]),
@@ -111,11 +108,28 @@ def validate_and_tokenize_pair(pair: CounterfactualPair, tokenizer: Any, config:
             f"Counterfactual token lengths differ for {pair.example_id}: "
             f"{len(clean['input_ids'])} != {len(corrupted['input_ids'])}"
         )
+    differing_positions = [
+        index
+        for index, (clean_id, corrupted_id) in enumerate(
+            zip(clean["input_ids"], corrupted["input_ids"])
+        )
+        if clean_id != corrupted_id
+    ]
+    if len(differing_positions) != 1:
+        raise ValueError(
+            f"Expected exactly one controlled instruction-token difference for "
+            f"{pair.example_id}, found {differing_positions}"
+        )
+    controlled_position = differing_positions[0]
     return {
         "clean_input_ids": clean["input_ids"],
         "corrupted_input_ids": corrupted["input_ids"],
         "supportive_target_id": int(supportive_ids[0]),
         "neutral_target_id": int(neutral_ids[0]),
+        "controlled_position": int(controlled_position),
+        "patch_position": int(len(clean["input_ids"]) - 1),
+        "clean_instruction_token_id": int(clean["input_ids"][controlled_position]),
+        "corrupted_instruction_token_id": int(corrupted["input_ids"][controlled_position]),
         "truncated": len(tokenizer.encode(pair.supportive_prompt, add_special_tokens=True)) > config.max_length,
     }
 

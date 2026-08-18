@@ -27,3 +27,5 @@ def test_targets_are_single_tokens_and_pair_lengths_align() -> None:
             encoded = validate_and_tokenize_pair(pair, tokenizer, config)
             assert len(encoded["clean_input_ids"]) == len(encoded["corrupted_input_ids"])
             assert encoded["supportive_target_id"] != encoded["neutral_target_id"]
+            assert encoded["clean_instruction_token_id"] != encoded["corrupted_instruction_token_id"]
+            assert isinstance(encoded["controlled_position"], int)

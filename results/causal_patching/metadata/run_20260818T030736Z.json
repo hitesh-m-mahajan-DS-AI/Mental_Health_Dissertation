@@ -12,21 +12,21 @@
   "pair_manifests": {
     "empathy": {
       "missing_context_placeholders": 18,
-      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\empathy\\metadata\\pairs_20260818T020527Z.jsonl",
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\empathy\\metadata\\pairs_20260818T030736Z.jsonl",
       "records": 200,
-      "sha256": "8f9d09b9ddefe98e8fa77aa0ce3ba9cb60dbd64662dea5aa2c68c7ec379d233e",
+      "sha256": "58334cd3ed43a4d29084968460719e419e0c5740429c6011f55e247741ea0198",
       "truncated": 0
     },
     "motivation": {
       "missing_context_placeholders": 6,
-      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\motivation\\metadata\\pairs_20260818T020527Z.jsonl",
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\motivation\\metadata\\pairs_20260818T030736Z.jsonl",
       "records": 200,
-      "sha256": "721ec8530ce661a16f52f30be49ff27cc103bbb246ddb7f85355842ebf9970d3",
+      "sha256": "63b44c9e19f8221b61fc365ef475667f5039f0250408fe3bbce950c682837894",
       "truncated": 4
     }
   },
-  "run_id": "20260818T020527Z",
-  "status": "invalidated_full_tensor_patch_cannot_localize_layers",
+  "run_id": "20260818T030736Z",
+  "status": "smoke_test_complete",
   "supportive_target": " I",
   "tokenizer": {
     "bos_token": "<|begin_of_text|>",
