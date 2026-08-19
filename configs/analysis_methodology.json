@@ -1,0 +1,90 @@
+{
+  "status": "partially_specified_do_not_run_until_required_nulls_are_resolved",
+  "activation_run_id": "20260817T181608Z",
+  "tasks": ["motivation", "empathy"],
+  "keep_tasks_independent": true,
+  "linear_probing": {
+    "sequence_length": 128,
+    "activation_family": "residual_stream",
+    "layers": "each_model_layer",
+    "primary_token_aggregation": "final_valid_response_token",
+    "secondary_token_aggregation": "mean_response_token_activation",
+    "exclude_special_tokens_from_response_mean": true,
+    "classifier": "logistic_regression",
+    "split_ratios": {"train": 0.70, "validation": 0.15, "test": 0.15},
+    "split_grouping": {"motivation": "transcript_id", "empathy": "dialogueId"},
+    "grouped_split_algorithm": {
+      "name": "seeded_group_assignment_search",
+      "candidate_assignments": 100000,
+      "require_both_classes_in_every_split": true,
+      "objective": "closest_sample_and_class_counts_to_70_15_15"
+    },
+    "metrics": ["accuracy", "macro_f1"],
+    "baselines": ["shuffled_label", "layer_0"],
+    "significance": "label_permutation_test",
+    "model_selection": {
+      "selection_metric": "validation_macro_f1",
+      "tie_break": "smallest_C",
+      "refit_on_train_plus_validation": true,
+      "test_used_once_after_selection": true
+    },
+    "exact_full_rank_acceleration": "orthonormal projection onto the fitted training row-space; no rank truncation",
+    "unresolved_required": {
+      "layer_0_exact_activation_definition": "layer_00.residual_pre",
+      "grouped_split_seed": 42,
+      "feature_scaling": "StandardScaler fitted on the training split only",
+      "logistic_regression_penalty": "l2",
+      "logistic_regression_C_or_selection_grid": [0.01, 0.1, 1.0, 10.0, 100.0],
+      "class_weight": "none",
+      "solver_and_max_iterations": {"solver": "lbfgs", "max_iter": 5000},
+      "shuffled_label_repetitions": 100,
+      "label_permutation_count": 1000,
+      "label_permutation_unit_and_retraining_procedure": "permute development labels across train plus validation examples with the grouped split fixed; repeat C selection, refit, and held-out test evaluation"
+    }
+  },
+  "causal_patching": {
+    "contrast": "supportive_vs_neutral",
+    "inputs": "matched_clean_corrupted_pairs",
+    "behavioural_score": "supportive_target_logit_minus_neutral_target_logit",
+    "position": "first_generated_response_position",
+    "faithfulness_equation": "(logit_diff_patched - logit_diff_corrupted) / (logit_diff_clean - logit_diff_corrupted)",
+    "faithfulness_required": true,
+    "completeness_required": true,
+    "minimality_required": true,
+    "unresolved_required": {
+      "matched_pair_construction": "hold client context fixed; contrast equal-structure supportive versus neutral response-style instructions",
+      "supportive_target_token_or_token_sequence": " I (single tokenizer token ID 358)",
+      "neutral_target_token_or_token_sequence": " Okay (single tokenizer token ID 36539)",
+      "multi_token_logit_scoring_rule_if_needed": "not applicable; both fixed targets are single tokens",
+      "completeness_operational_definition": "after residual-layer localization is refined into computational nodes, evaluate Wang et al. incompleteness |F(C\\K)-F(M\\K)| using random subsets, semantic component groups, and greedy-search subsets K",
+      "minimality_operational_definition": "for every refined circuit node v, search K subset C without v and report |F(C\\(K union {v}))-F(C\\K)|, including the fraction of full-model clean-corrupted logit difference"
+    }
+  },
+  "sae": {
+    "framework": "SAELens",
+    "preferred_source": "Llama Scope",
+    "base_model": "Llama-3.1-8B Base",
+    "preferred_activation_family": "residual_stream",
+    "layer_selection": "after_probing_and_patching_evidence",
+    "required_feature_fields": ["feature_id", "sparsity_or_L0", "interpretability_score"],
+    "baseline": "random_neuron",
+    "unresolved_required": {
+      "compatible_sae_release_and_checkpoint": null,
+      "exact_layer": null,
+      "exact_hook_point": null,
+      "interpretability_scoring_protocol": null,
+      "random_neuron_baseline_repetitions": null
+    }
+  },
+  "circuit_atlas": {
+    "cross_reference": ["probing", "patching", "sae"],
+    "set_overlap_metric": "Jaccard",
+    "ranking_metric_where_comparable": "Spearman",
+    "report_disagreement": true,
+    "outputs": ["JSON", "charts", "visual_circuit_diagram", "human_readable_report"],
+    "unresolved_required": {
+      "top_component_set_definition": null,
+      "ranking_tie_handling": null
+    }
+  }
+}

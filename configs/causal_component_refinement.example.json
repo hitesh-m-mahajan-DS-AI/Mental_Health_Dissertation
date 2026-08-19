@@ -1,0 +1,12 @@
+{
+  "corrected_causal_summary": "results/causal_patching/metadata/corrected_causal_patching_summary_RUN_ID.json",
+  "selected_layers": {
+    "motivation": [],
+    "empathy": []
+  },
+  "candidate_subset_sizes": [1, 2, 4],
+  "random_subset_seed": 42,
+  "random_subset_repetitions": 100,
+  "minimality_threshold": 0.0,
+  "note": "Empty layer lists are placeholders and are rejected until explicitly populated from corrected evidence."
+}

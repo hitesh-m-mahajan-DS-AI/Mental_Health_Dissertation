@@ -1,0 +1,5 @@
+{
+  "corrected_causal_summary": "results/causal_patching/metadata/causal_patching_summary_20260818T030736Z.json",
+  "selected_layers": {"motivation": [16], "empathy": [16]},
+  "selection_rationale": "Layer 16 is supported by corrected causal intervals for both tasks and matches the pinned SAE hook."
+}

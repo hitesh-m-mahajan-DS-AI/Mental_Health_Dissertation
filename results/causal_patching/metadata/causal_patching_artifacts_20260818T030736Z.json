@@ -1,0 +1,35 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3768,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\motivation\\layer_summary_20260818T030736Z.json",
+      "sha256": "8f9ff7becda66c520e2c96dda7140f29d62e0936f21698c48a365fdb131334c4"
+    },
+    {
+      "bytes": 116645,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\motivation\\layer_patching_20260818T030736Z.png",
+      "sha256": "f4cb719f85b959b95bb8a562ecd303256b4fed6d67263e3d69a3e5effdcc3633"
+    },
+    {
+      "bytes": 3492,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\empathy\\layer_summary_20260818T030736Z.json",
+      "sha256": "b19994264af70353464d8404415b8659b8ef1c035e2af32b512629a55eb32277"
+    },
+    {
+      "bytes": 106988,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\empathy\\layer_patching_20260818T030736Z.png",
+      "sha256": "229e587c8a8bba328bb6028ed1c7bcab2e098af3265beb5d601d76632f7c6540"
+    },
+    {
+      "bytes": 8883,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\metadata\\causal_patching_summary_20260818T030736Z.json",
+      "sha256": "d4365fdc589a6b6dc8968e370414e3f34f019004dfa09620d26c45050df08deb"
+    },
+    {
+      "bytes": 1227,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\metadata\\causal_patching_report_20260818T030736Z.md",
+      "sha256": "e7c78974919920c2b1a43c4b300b375e75d7bca124c8696a467f4d0d5e64b10b"
+    }
+  ],
+  "run_id": "20260818T030736Z"
+}

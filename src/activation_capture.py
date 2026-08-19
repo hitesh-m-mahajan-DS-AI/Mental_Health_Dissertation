@@ -68,13 +68,71 @@ def _seed_everything(seed: int) -> None:
         torch.cuda.manual_seed_all(seed)
 
 
-def _select_examples(bundle: DatasetBundle, limit: int | None) -> tuple[Any, ...]:
-    # Deterministic source order; no random sampling or class rebalancing.
-    return bundle.examples if limit is None else bundle.examples[:limit]
+def select_examples(
+    bundle: DatasetBundle,
+    limit: int | None,
+    strategy: str,
+    seed: int,
+) -> tuple[Any, ...]:
+    """Select examples without changing labels or the underlying populations."""
+    if limit is None:
+        return bundle.examples
+    if limit > len(bundle.examples):
+        raise ValueError(
+            f"Requested {limit} {bundle.name} examples from a population of {len(bundle.examples)}"
+        )
+    if strategy == "source_order":
+        return bundle.examples[:limit]
+    if strategy == "uniform_random_without_replacement":
+        selected = random.Random(seed).sample(list(bundle.examples), limit)
+        # Process in source order after random membership selection. This makes logs
+        # easier to audit without changing which examples were randomly selected.
+        return tuple(sorted(selected, key=lambda example: example.source_row))
+    raise ValueError(f"Unsupported sampling strategy {strategy!r}")
+
+
+def _write_selection_manifest(
+    output_root: Path,
+    bundle: DatasetBundle,
+    examples: tuple[Any, ...],
+    run_id: str,
+    strategy: str,
+    seed: int,
+) -> dict[str, Any]:
+    path = output_root / bundle.name / "metadata" / f"selection_{run_id}.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        for ordinal, example in enumerate(examples):
+            record = {
+                "selection_ordinal": ordinal,
+                "dataset": example.dataset,
+                "example_id": example.example_id,
+                "source_row": example.source_row,
+                "conversation_id": example.conversation_id,
+                "utterance_id": example.utterance_id,
+                "label": example.label,
+                "response_sha256": hashlib.sha256(example.response.encode("utf-8")).hexdigest(),
+            }
+            handle.write(json.dumps(record, sort_keys=True) + "\n")
+    label_counts = {
+        str(label): sum(example.label == label for example in examples) for label in (0, 1)
+    }
+    return {
+        "path": str(path),
+        "sha256": sha256_file(path),
+        "records": len(examples),
+        "strategy": strategy,
+        "seed": seed,
+        "label_counts": label_counts,
+        "unique_conversations": len({example.conversation_id for example in examples}),
+    }
 
 
 def _storage_estimate(
-    bundles: dict[str, DatasetBundle], tokenizer: Any, hf_config: Any, config: CaptureConfig
+    examples_by_dataset: dict[str, tuple[Any, ...]],
+    tokenizer: Any,
+    hf_config: Any,
+    config: CaptureConfig,
 ) -> dict[str, Any]:
     head_dim = int(hf_config.hidden_size // hf_config.num_attention_heads)
     dimensions = {
@@ -100,7 +158,7 @@ def _storage_estimate(
         "note": "Estimate excludes safetensors headers, JSON metadata, and filesystem overhead.",
         "datasets": {},
     }
-    for name, bundle in bundles.items():
+    for name, examples in examples_by_dataset.items():
         token_lengths = [
             len(
                 tokenizer(
@@ -109,7 +167,7 @@ def _storage_estimate(
                     truncation=False,
                 )["input_ids"]
             )
-            for example in bundle.examples
+            for example in examples
         ]
         if config.token_positions == "all":
             captured_tokens = sum(min(length, config.max_length) for length in token_lengths)
@@ -140,6 +198,7 @@ def _human_report(metadata: dict[str, Any], manifests: dict[str, str]) -> str:
         "",
         f"- Run ID: `{metadata['run_id']}`",
         f"- Mode: `{'smoke test' if metadata['capture_config']['smoke_test'] else 'configured capture'}`",
+        f"- Resumed after interruption: `{metadata.get('resumed', False)}`",
         f"- Model: `{metadata['model_files']['model_path']}` (`{config['architectures'][0]}`)",
         f"- Shape: {config['num_hidden_layers']} layers, hidden size {config['hidden_size']}, "
         f"{config['num_attention_heads']} attention heads, {config['num_key_value_heads']} KV heads",
@@ -149,28 +208,54 @@ def _human_report(metadata: dict[str, Any], manifests: dict[str, str]) -> str:
         f"is `{metadata['transformer_lens_compatibility']['compatible']}`",
         f"- Hook points discovered: {len(metadata['hook_points'])}",
         "",
-        "## Dataset manifests",
+        "## Random selections",
         "",
     ]
-    lines.extend(f"- {name}: `{path}`" for name, path in manifests.items())
+    for name, selection in metadata["selection_manifests"].items():
+        lines.append(
+            f"- {name}: {selection['records']} examples; labels {selection['label_counts']}; "
+            f"{selection['unique_conversations']} unique conversations; seed {selection['seed']}"
+        )
+    estimate = metadata["configured_selection_storage_estimate"]
+    lines.extend(
+        [
+            "",
+            "## Capture and verification",
+            "",
+            f"- Estimated tensor payload: {estimate['total_estimated_activation_gib']:.2f} GiB",
+        ]
+    )
+    for name, path in manifests.items():
+        manifest = json.loads(Path(path).read_text(encoding="utf-8"))
+        output_bytes = sum(item["size_bytes"] for item in manifest["outputs"])
+        verification = manifest["verification"]
+        lines.append(
+            f"- {name}: {manifest['captured_examples']} examples; "
+            f"{len(manifest['outputs'])} files; {output_bytes / 1024**3:.2f} GiB; "
+            f"{verification['verified_tensors']} verified tensors"
+        )
+        lines.append(f"  - Manifest: `{path}`")
     lines.extend(
         [
             "",
             "## Methodological boundary",
             "",
-            "This runner records the configured token/input policy in machine-readable metadata. "
-            "The smoke-test policy validates mechanics only and is not an approval of the final "
-            "scientific token aggregation, prompt construction, split ratios, corruption construction, "
-            "or behavioural logit definition.",
+            f"This run captures the configured raw response with BOS and every token up to {config.max_length}. "
+            "It does not decide the later grouped train/validation/test ratios, causal corruption "
+            "construction, behavioural logit definition, or SAE checkpoint/source.",
             "",
         ]
     )
     return "\n".join(lines)
 
 
-def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
+def run_capture(
+    config: CaptureConfig,
+    inspect_only: bool = False,
+    resume_run_id: str | None = None,
+) -> None:
     _seed_everything(config.seed)
-    run_id = new_run_id()
+    run_id = resume_run_id or new_run_id()
     config.output_root.mkdir(parents=True, exist_ok=True)
 
     hf_config, tokenizer, tokenizer_info = validate_local_checkpoint(config)
@@ -183,7 +268,35 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
         name: _write_population_manifest(config.output_root, bundle)
         for name, bundle in bundles.items()
     }
-    storage_estimate = _storage_estimate(bundles, tokenizer, hf_config, config)
+    full_population_storage_estimate = _storage_estimate(
+        {name: bundle.examples for name, bundle in bundles.items()},
+        tokenizer,
+        hf_config,
+        config,
+    )
+    selected_examples = {
+        name: select_examples(
+            bundle,
+            config.max_examples_per_dataset,
+            config.sampling_strategy,
+            config.sampling_seeds[name],
+        )
+        for name, bundle in bundles.items()
+    }
+    selection_manifests = {
+        name: _write_selection_manifest(
+            config.output_root,
+            bundle,
+            selected_examples[name],
+            run_id,
+            config.sampling_strategy,
+            config.sampling_seeds[name],
+        )
+        for name, bundle in bundles.items()
+    }
+    configured_selection_storage_estimate = _storage_estimate(
+        selected_examples, tokenizer, hf_config, config
+    )
 
     capture_config = {
         "seed": config.seed,
@@ -192,6 +305,8 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
         "max_memory": config.max_memory,
         "max_length": config.max_length,
         "max_examples_per_dataset": config.max_examples_per_dataset,
+        "sampling_strategy": config.sampling_strategy,
+        "sampling_seeds": config.sampling_seeds,
         "token_positions": config.token_positions,
         "add_special_tokens": config.add_special_tokens,
         "input_format": config.input_format,
@@ -202,6 +317,7 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
     run_metadata: dict[str, Any] = {
         "run_id": run_id,
         "status": "inspected" if inspect_only else "initializing_model",
+        "resumed": resume_run_id is not None,
         "capture_config": capture_config,
         "model_files": model_file_metadata(config.model_path),
         "model_config": hf_config.to_dict(),
@@ -213,6 +329,7 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
         "hook_points": hook_points,
         "dataset_audits": {name: bundle.audit for name, bundle in bundles.items()},
         "population_manifests": population_manifests,
+        "selection_manifests": selection_manifests,
         "provenance_reference_files": {
             name: {
                 "path": str(config.project_root / name),
@@ -224,10 +341,11 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
                 "annomi_manual_review_corrected.csv",
             ]
         },
-        "full_population_storage_estimate": storage_estimate,
+        "full_population_storage_estimate": full_population_storage_estimate,
+        "configured_selection_storage_estimate": configured_selection_storage_estimate,
         "unresolved_scientific_choices": [
-            "Final prompt/input construction (smoke test uses raw counselor/therapist response only).",
-            "Final token aggregation/position policy (smoke test captures every token).",
+            "The configured capture uses each raw counselor/therapist response with BOS; alternative conversational context was not specified.",
+            f"Every token is captured up to {config.max_length}; downstream analyses must use the aggregation declared in their own configuration.",
             "Grouped train/validation/test ratios and seed for probing.",
             "Causal corruption construction and behavioural logit-difference definition.",
             "SAE source/checkpoint compatibility; sae-lens is not currently installed.",
@@ -246,6 +364,16 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
         f"Datasets: motivation={len(bundles['motivation'].examples)} binary rows; "
         f"empathy={len(bundles['empathy'].examples)} counselor rows"
     )
+    for name in config.dataset_order:
+        selection = selection_manifests[name]
+        print(
+            f"Selected {name}: {selection['records']} random examples, "
+            f"labels={selection['label_counts']}, seed={selection['seed']}"
+        )
+    print(
+        "Estimated configured tensor payload: "
+        f"{configured_selection_storage_estimate['total_estimated_activation_gib']:.2f} GiB"
+    )
     print(f"Discovered {len(hook_points)} hook points across {hf_config.num_hidden_layers} layers")
     if inspect_only:
         print(f"Inspection metadata: {run_metadata_path}")
@@ -262,10 +390,44 @@ def run_capture(config: CaptureConfig, inspect_only: bool = False) -> None:
     try:
         for dataset_name in config.dataset_order:
             bundle = bundles[dataset_name]
-            examples = _select_examples(bundle, config.max_examples_per_dataset)
-            writer = DatasetWriter(config.output_root, dataset_name, run_id)
-            print(f"Capturing {len(examples)} {dataset_name} example(s)...")
+            examples = selected_examples[dataset_name]
+            existing_manifest = (
+                config.output_root / dataset_name / f"manifest_{run_id}.json"
+            )
+            if resume_run_id and existing_manifest.is_file():
+                existing = json.loads(existing_manifest.read_text(encoding="utf-8"))
+                if (
+                    existing.get("captured_examples") == len(examples)
+                    and existing.get("verification", {}).get("status") == "passed"
+                ):
+                    manifest_paths[dataset_name] = str(existing_manifest)
+                    print(
+                        f"Skipping completed {dataset_name}: {len(examples)} examples "
+                        "already captured and verified"
+                    )
+                    continue
+                raise ValueError(
+                    f"Existing {dataset_name} manifest is not a complete verified match: "
+                    f"{existing_manifest}"
+                )
+            writer = DatasetWriter(
+                config.output_root,
+                dataset_name,
+                run_id,
+                resume=resume_run_id is not None,
+            )
+            completed_ids = {record["example_id"] for record in writer.records}
+            if not completed_ids <= {example.example_id for example in examples}:
+                raise ValueError(
+                    f"Resume metadata for {dataset_name} contains examples outside the selection"
+                )
+            print(
+                f"Capturing {len(examples) - len(completed_ids)} remaining {dataset_name} "
+                f"example(s); {len(completed_ids)} already complete..."
+            )
             for ordinal, example in enumerate(examples):
+                if example.example_id in completed_ids:
+                    continue
                 full = tokenizer(
                     example.response,
                     add_special_tokens=config.add_special_tokens,

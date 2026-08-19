@@ -2,10 +2,14 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.pytest_tmp*/
 .mypy_cache/
 .ruff_cache/
 .venv/
+.venv-sae/
+.hf-sae/
 venv/
+tmp/
 
 # Local editor and OS state
 .vscode/
@@ -39,6 +43,23 @@ results/activations/**
 !results/activations/metadata/
 results/activations/metadata/**
 !results/activations/metadata/checkpoint_report_*.md
+!results/probes/
+!results/probes/**
+!results/causal_patching/
+results/causal_patching/**
+!results/causal_patching/metadata/
+!results/causal_patching/metadata/*.json
+!results/causal_patching/motivation/
+!results/causal_patching/motivation/metadata/
+!results/causal_patching/motivation/metadata/*.jsonl
+!results/causal_patching/empathy/
+!results/causal_patching/empathy/metadata/
+!results/causal_patching/empathy/metadata/*.jsonl
+!results/causal_patching/metadata/*.md
+!results/causal_patching/motivation/*.json
+!results/causal_patching/motivation/*.png
+!results/causal_patching/empathy/*.json
+!results/causal_patching/empathy/*.png
 logs/
 *.log
 

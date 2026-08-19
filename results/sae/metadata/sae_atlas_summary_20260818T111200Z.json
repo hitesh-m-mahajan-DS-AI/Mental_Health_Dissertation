@@ -1,0 +1,1434 @@
+{
+  "summary_kind": "sae_circuit_atlas_input",
+  "sae_run_id": "20260818T111200Z",
+  "datasets": {
+    "motivation": {
+      "status": "complete",
+      "layer_count": 32,
+      "selected_layers": [
+        16
+      ],
+      "layer_scores": {
+        "16": 1.7624958753585815
+      },
+      "selection_rule": "Pinned Llama Scope SAE layer supported by corrected causal evidence in both tasks",
+      "selected_features": [
+        {
+          "layer": 16,
+          "feature_id": 5751,
+          "score": 1.365194320678711,
+          "aggregation": "final_valid_response_token",
+          "rank": 1
+        },
+        {
+          "layer": 16,
+          "feature_id": 25791,
+          "score": 1.198534607887268,
+          "aggregation": "final_valid_response_token",
+          "rank": 2
+        },
+        {
+          "layer": 16,
+          "feature_id": 20940,
+          "score": 1.1689270734786987,
+          "aggregation": "final_valid_response_token",
+          "rank": 3
+        },
+        {
+          "layer": 16,
+          "feature_id": 25458,
+          "score": 1.1405103206634521,
+          "aggregation": "final_valid_response_token",
+          "rank": 4
+        },
+        {
+          "layer": 16,
+          "feature_id": 11098,
+          "score": 1.1146352291107178,
+          "aggregation": "final_valid_response_token",
+          "rank": 5
+        },
+        {
+          "layer": 16,
+          "feature_id": 31997,
+          "score": 1.100661039352417,
+          "aggregation": "final_valid_response_token",
+          "rank": 6
+        },
+        {
+          "layer": 16,
+          "feature_id": 1881,
+          "score": 1.07319974899292,
+          "aggregation": "final_valid_response_token",
+          "rank": 7
+        },
+        {
+          "layer": 16,
+          "feature_id": 25373,
+          "score": 1.0618730783462524,
+          "aggregation": "final_valid_response_token",
+          "rank": 8
+        },
+        {
+          "layer": 16,
+          "feature_id": 8011,
+          "score": 1.0240391492843628,
+          "aggregation": "final_valid_response_token",
+          "rank": 9
+        },
+        {
+          "layer": 16,
+          "feature_id": 29799,
+          "score": 0.9863148331642151,
+          "aggregation": "final_valid_response_token",
+          "rank": 10
+        },
+        {
+          "layer": 16,
+          "feature_id": 16855,
+          "score": 0.946354329586029,
+          "aggregation": "final_valid_response_token",
+          "rank": 11
+        },
+        {
+          "layer": 16,
+          "feature_id": 10618,
+          "score": 0.9375981092453003,
+          "aggregation": "final_valid_response_token",
+          "rank": 12
+        },
+        {
+          "layer": 16,
+          "feature_id": 2917,
+          "score": 0.8951502442359924,
+          "aggregation": "final_valid_response_token",
+          "rank": 13
+        },
+        {
+          "layer": 16,
+          "feature_id": 17813,
+          "score": 0.892242968082428,
+          "aggregation": "final_valid_response_token",
+          "rank": 14
+        },
+        {
+          "layer": 16,
+          "feature_id": 13798,
+          "score": 0.8542519807815552,
+          "aggregation": "final_valid_response_token",
+          "rank": 15
+        },
+        {
+          "layer": 16,
+          "feature_id": 12004,
+          "score": 0.8203803896903992,
+          "aggregation": "final_valid_response_token",
+          "rank": 16
+        },
+        {
+          "layer": 16,
+          "feature_id": 1124,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 17
+        },
+        {
+          "layer": 16,
+          "feature_id": 1954,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 18
+        },
+        {
+          "layer": 16,
+          "feature_id": 4937,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 19
+        },
+        {
+          "layer": 16,
+          "feature_id": 7404,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 20
+        },
+        {
+          "layer": 16,
+          "feature_id": 12666,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 21
+        },
+        {
+          "layer": 16,
+          "feature_id": 15309,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 22
+        },
+        {
+          "layer": 16,
+          "feature_id": 22242,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 23
+        },
+        {
+          "layer": 16,
+          "feature_id": 23722,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 24
+        },
+        {
+          "layer": 16,
+          "feature_id": 25084,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 25
+        },
+        {
+          "layer": 16,
+          "feature_id": 26883,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 26
+        },
+        {
+          "layer": 16,
+          "feature_id": 30345,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 27
+        },
+        {
+          "layer": 16,
+          "feature_id": 31010,
+          "score": 0.7817360162734985,
+          "aggregation": "final_valid_response_token",
+          "rank": 28
+        },
+        {
+          "layer": 16,
+          "feature_id": 334,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 29
+        },
+        {
+          "layer": 16,
+          "feature_id": 1098,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 30
+        },
+        {
+          "layer": 16,
+          "feature_id": 1108,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 31
+        },
+        {
+          "layer": 16,
+          "feature_id": 3923,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 32
+        },
+        {
+          "layer": 16,
+          "feature_id": 5153,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 33
+        },
+        {
+          "layer": 16,
+          "feature_id": 5587,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 34
+        },
+        {
+          "layer": 16,
+          "feature_id": 7689,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 35
+        },
+        {
+          "layer": 16,
+          "feature_id": 8664,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 36
+        },
+        {
+          "layer": 16,
+          "feature_id": 10158,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 37
+        },
+        {
+          "layer": 16,
+          "feature_id": 11058,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 38
+        },
+        {
+          "layer": 16,
+          "feature_id": 13193,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 39
+        },
+        {
+          "layer": 16,
+          "feature_id": 15549,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 40
+        },
+        {
+          "layer": 16,
+          "feature_id": 16783,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 41
+        },
+        {
+          "layer": 16,
+          "feature_id": 16993,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 42
+        },
+        {
+          "layer": 16,
+          "feature_id": 17343,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 43
+        },
+        {
+          "layer": 16,
+          "feature_id": 18768,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 44
+        },
+        {
+          "layer": 16,
+          "feature_id": 19427,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 45
+        },
+        {
+          "layer": 16,
+          "feature_id": 20501,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 46
+        },
+        {
+          "layer": 16,
+          "feature_id": 20753,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 47
+        },
+        {
+          "layer": 16,
+          "feature_id": 21990,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 48
+        },
+        {
+          "layer": 16,
+          "feature_id": 22134,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 49
+        },
+        {
+          "layer": 16,
+          "feature_id": 24264,
+          "score": 0.7817359566688538,
+          "aggregation": "final_valid_response_token",
+          "rank": 50
+        },
+        {
+          "layer": 16,
+          "feature_id": 27093,
+          "score": 1.7624958753585815,
+          "aggregation": "mean_response_token_activation",
+          "rank": 1
+        },
+        {
+          "layer": 16,
+          "feature_id": 25791,
+          "score": 1.63203763961792,
+          "aggregation": "mean_response_token_activation",
+          "rank": 2
+        },
+        {
+          "layer": 16,
+          "feature_id": 12247,
+          "score": 1.6061168909072876,
+          "aggregation": "mean_response_token_activation",
+          "rank": 3
+        },
+        {
+          "layer": 16,
+          "feature_id": 8792,
+          "score": 1.5830682516098022,
+          "aggregation": "mean_response_token_activation",
+          "rank": 4
+        },
+        {
+          "layer": 16,
+          "feature_id": 20695,
+          "score": 1.5303125381469727,
+          "aggregation": "mean_response_token_activation",
+          "rank": 5
+        },
+        {
+          "layer": 16,
+          "feature_id": 23509,
+          "score": 1.4959825277328491,
+          "aggregation": "mean_response_token_activation",
+          "rank": 6
+        },
+        {
+          "layer": 16,
+          "feature_id": 32045,
+          "score": 1.4799559116363525,
+          "aggregation": "mean_response_token_activation",
+          "rank": 7
+        },
+        {
+          "layer": 16,
+          "feature_id": 23598,
+          "score": 1.4768418073654175,
+          "aggregation": "mean_response_token_activation",
+          "rank": 8
+        },
+        {
+          "layer": 16,
+          "feature_id": 7542,
+          "score": 1.470508337020874,
+          "aggregation": "mean_response_token_activation",
+          "rank": 9
+        },
+        {
+          "layer": 16,
+          "feature_id": 10227,
+          "score": 1.4422845840454102,
+          "aggregation": "mean_response_token_activation",
+          "rank": 10
+        },
+        {
+          "layer": 16,
+          "feature_id": 27339,
+          "score": 1.4258968830108643,
+          "aggregation": "mean_response_token_activation",
+          "rank": 11
+        },
+        {
+          "layer": 16,
+          "feature_id": 7788,
+          "score": 1.4096795320510864,
+          "aggregation": "mean_response_token_activation",
+          "rank": 12
+        },
+        {
+          "layer": 16,
+          "feature_id": 29573,
+          "score": 1.4013855457305908,
+          "aggregation": "mean_response_token_activation",
+          "rank": 13
+        },
+        {
+          "layer": 16,
+          "feature_id": 19599,
+          "score": 1.3888795375823975,
+          "aggregation": "mean_response_token_activation",
+          "rank": 14
+        },
+        {
+          "layer": 16,
+          "feature_id": 4444,
+          "score": 1.387433409690857,
+          "aggregation": "mean_response_token_activation",
+          "rank": 15
+        },
+        {
+          "layer": 16,
+          "feature_id": 216,
+          "score": 1.3792643547058105,
+          "aggregation": "mean_response_token_activation",
+          "rank": 16
+        },
+        {
+          "layer": 16,
+          "feature_id": 29343,
+          "score": 1.371307611465454,
+          "aggregation": "mean_response_token_activation",
+          "rank": 17
+        },
+        {
+          "layer": 16,
+          "feature_id": 8705,
+          "score": 1.316909909248352,
+          "aggregation": "mean_response_token_activation",
+          "rank": 18
+        },
+        {
+          "layer": 16,
+          "feature_id": 8063,
+          "score": 1.3094505071640015,
+          "aggregation": "mean_response_token_activation",
+          "rank": 19
+        },
+        {
+          "layer": 16,
+          "feature_id": 20684,
+          "score": 1.2915403842926025,
+          "aggregation": "mean_response_token_activation",
+          "rank": 20
+        },
+        {
+          "layer": 16,
+          "feature_id": 31867,
+          "score": 1.2857550382614136,
+          "aggregation": "mean_response_token_activation",
+          "rank": 21
+        },
+        {
+          "layer": 16,
+          "feature_id": 11745,
+          "score": 1.2699178457260132,
+          "aggregation": "mean_response_token_activation",
+          "rank": 22
+        },
+        {
+          "layer": 16,
+          "feature_id": 22416,
+          "score": 1.2699037790298462,
+          "aggregation": "mean_response_token_activation",
+          "rank": 23
+        },
+        {
+          "layer": 16,
+          "feature_id": 18851,
+          "score": 1.2517335414886475,
+          "aggregation": "mean_response_token_activation",
+          "rank": 24
+        },
+        {
+          "layer": 16,
+          "feature_id": 3791,
+          "score": 1.2307446002960205,
+          "aggregation": "mean_response_token_activation",
+          "rank": 25
+        },
+        {
+          "layer": 16,
+          "feature_id": 9991,
+          "score": 1.2217142581939697,
+          "aggregation": "mean_response_token_activation",
+          "rank": 26
+        },
+        {
+          "layer": 16,
+          "feature_id": 21398,
+          "score": 1.2182427644729614,
+          "aggregation": "mean_response_token_activation",
+          "rank": 27
+        },
+        {
+          "layer": 16,
+          "feature_id": 8522,
+          "score": 1.211814045906067,
+          "aggregation": "mean_response_token_activation",
+          "rank": 28
+        },
+        {
+          "layer": 16,
+          "feature_id": 1161,
+          "score": 1.2048519849777222,
+          "aggregation": "mean_response_token_activation",
+          "rank": 29
+        },
+        {
+          "layer": 16,
+          "feature_id": 21765,
+          "score": 1.1951595544815063,
+          "aggregation": "mean_response_token_activation",
+          "rank": 30
+        },
+        {
+          "layer": 16,
+          "feature_id": 3486,
+          "score": 1.1938115358352661,
+          "aggregation": "mean_response_token_activation",
+          "rank": 31
+        },
+        {
+          "layer": 16,
+          "feature_id": 3210,
+          "score": 1.190062165260315,
+          "aggregation": "mean_response_token_activation",
+          "rank": 32
+        },
+        {
+          "layer": 16,
+          "feature_id": 16525,
+          "score": 1.1878223419189453,
+          "aggregation": "mean_response_token_activation",
+          "rank": 33
+        },
+        {
+          "layer": 16,
+          "feature_id": 27274,
+          "score": 1.1865484714508057,
+          "aggregation": "mean_response_token_activation",
+          "rank": 34
+        },
+        {
+          "layer": 16,
+          "feature_id": 20591,
+          "score": 1.1802654266357422,
+          "aggregation": "mean_response_token_activation",
+          "rank": 35
+        },
+        {
+          "layer": 16,
+          "feature_id": 29799,
+          "score": 1.1797927618026733,
+          "aggregation": "mean_response_token_activation",
+          "rank": 36
+        },
+        {
+          "layer": 16,
+          "feature_id": 16978,
+          "score": 1.1787877082824707,
+          "aggregation": "mean_response_token_activation",
+          "rank": 37
+        },
+        {
+          "layer": 16,
+          "feature_id": 28595,
+          "score": 1.1779793500900269,
+          "aggregation": "mean_response_token_activation",
+          "rank": 38
+        },
+        {
+          "layer": 16,
+          "feature_id": 12030,
+          "score": 1.1774251461029053,
+          "aggregation": "mean_response_token_activation",
+          "rank": 39
+        },
+        {
+          "layer": 16,
+          "feature_id": 8312,
+          "score": 1.1722193956375122,
+          "aggregation": "mean_response_token_activation",
+          "rank": 40
+        },
+        {
+          "layer": 16,
+          "feature_id": 5751,
+          "score": 1.1708581447601318,
+          "aggregation": "mean_response_token_activation",
+          "rank": 41
+        },
+        {
+          "layer": 16,
+          "feature_id": 27470,
+          "score": 1.17021906375885,
+          "aggregation": "mean_response_token_activation",
+          "rank": 42
+        },
+        {
+          "layer": 16,
+          "feature_id": 10405,
+          "score": 1.1686327457427979,
+          "aggregation": "mean_response_token_activation",
+          "rank": 43
+        },
+        {
+          "layer": 16,
+          "feature_id": 13799,
+          "score": 1.1685092449188232,
+          "aggregation": "mean_response_token_activation",
+          "rank": 44
+        },
+        {
+          "layer": 16,
+          "feature_id": 11925,
+          "score": 1.1682451963424683,
+          "aggregation": "mean_response_token_activation",
+          "rank": 45
+        },
+        {
+          "layer": 16,
+          "feature_id": 29461,
+          "score": 1.1669865846633911,
+          "aggregation": "mean_response_token_activation",
+          "rank": 46
+        },
+        {
+          "layer": 16,
+          "feature_id": 19850,
+          "score": 1.1655502319335938,
+          "aggregation": "mean_response_token_activation",
+          "rank": 47
+        },
+        {
+          "layer": 16,
+          "feature_id": 4505,
+          "score": 1.1635323762893677,
+          "aggregation": "mean_response_token_activation",
+          "rank": 48
+        },
+        {
+          "layer": 16,
+          "feature_id": 9302,
+          "score": 1.1603047847747803,
+          "aggregation": "mean_response_token_activation",
+          "rank": 49
+        },
+        {
+          "layer": 16,
+          "feature_id": 9424,
+          "score": 1.1602554321289062,
+          "aggregation": "mean_response_token_activation",
+          "rank": 50
+        }
+      ],
+      "source": "results\\sae\\motivation\\sae_analysis_20260818T111200Z.json"
+    },
+    "empathy": {
+      "status": "complete",
+      "layer_count": 32,
+      "selected_layers": [
+        16
+      ],
+      "layer_scores": {
+        "16": 1.3188291788101196
+      },
+      "selection_rule": "Pinned Llama Scope SAE layer supported by corrected causal evidence in both tasks",
+      "selected_features": [
+        {
+          "layer": 16,
+          "feature_id": 9970,
+          "score": 0.9984714984893799,
+          "aggregation": "final_valid_response_token",
+          "rank": 1
+        },
+        {
+          "layer": 16,
+          "feature_id": 9546,
+          "score": 0.8785278797149658,
+          "aggregation": "final_valid_response_token",
+          "rank": 2
+        },
+        {
+          "layer": 16,
+          "feature_id": 12340,
+          "score": 0.7575701475143433,
+          "aggregation": "final_valid_response_token",
+          "rank": 3
+        },
+        {
+          "layer": 16,
+          "feature_id": 25523,
+          "score": 0.7443152666091919,
+          "aggregation": "final_valid_response_token",
+          "rank": 4
+        },
+        {
+          "layer": 16,
+          "feature_id": 16670,
+          "score": 0.7128009796142578,
+          "aggregation": "final_valid_response_token",
+          "rank": 5
+        },
+        {
+          "layer": 16,
+          "feature_id": 32539,
+          "score": 0.7001010775566101,
+          "aggregation": "final_valid_response_token",
+          "rank": 6
+        },
+        {
+          "layer": 16,
+          "feature_id": 9521,
+          "score": 0.6635979413986206,
+          "aggregation": "final_valid_response_token",
+          "rank": 7
+        },
+        {
+          "layer": 16,
+          "feature_id": 9126,
+          "score": 0.6332632303237915,
+          "aggregation": "final_valid_response_token",
+          "rank": 8
+        },
+        {
+          "layer": 16,
+          "feature_id": 26999,
+          "score": 0.5951482653617859,
+          "aggregation": "final_valid_response_token",
+          "rank": 9
+        },
+        {
+          "layer": 16,
+          "feature_id": 16443,
+          "score": 0.5755663514137268,
+          "aggregation": "final_valid_response_token",
+          "rank": 10
+        },
+        {
+          "layer": 16,
+          "feature_id": 17045,
+          "score": 0.568938672542572,
+          "aggregation": "final_valid_response_token",
+          "rank": 11
+        },
+        {
+          "layer": 16,
+          "feature_id": 5751,
+          "score": 0.5665311813354492,
+          "aggregation": "final_valid_response_token",
+          "rank": 12
+        },
+        {
+          "layer": 16,
+          "feature_id": 11875,
+          "score": 0.5606536865234375,
+          "aggregation": "final_valid_response_token",
+          "rank": 13
+        },
+        {
+          "layer": 16,
+          "feature_id": 16788,
+          "score": 0.5408372282981873,
+          "aggregation": "final_valid_response_token",
+          "rank": 14
+        },
+        {
+          "layer": 16,
+          "feature_id": 19259,
+          "score": 0.5301300883293152,
+          "aggregation": "final_valid_response_token",
+          "rank": 15
+        },
+        {
+          "layer": 16,
+          "feature_id": 4911,
+          "score": 0.5259564518928528,
+          "aggregation": "final_valid_response_token",
+          "rank": 16
+        },
+        {
+          "layer": 16,
+          "feature_id": 27354,
+          "score": 0.5081454515457153,
+          "aggregation": "final_valid_response_token",
+          "rank": 17
+        },
+        {
+          "layer": 16,
+          "feature_id": 19437,
+          "score": 0.5076780915260315,
+          "aggregation": "final_valid_response_token",
+          "rank": 18
+        },
+        {
+          "layer": 16,
+          "feature_id": 8861,
+          "score": 0.5054836273193359,
+          "aggregation": "final_valid_response_token",
+          "rank": 19
+        },
+        {
+          "layer": 16,
+          "feature_id": 10227,
+          "score": 0.5016712546348572,
+          "aggregation": "final_valid_response_token",
+          "rank": 20
+        },
+        {
+          "layer": 16,
+          "feature_id": 1749,
+          "score": 0.4776228368282318,
+          "aggregation": "final_valid_response_token",
+          "rank": 21
+        },
+        {
+          "layer": 16,
+          "feature_id": 22720,
+          "score": 0.47356101870536804,
+          "aggregation": "final_valid_response_token",
+          "rank": 22
+        },
+        {
+          "layer": 16,
+          "feature_id": 7486,
+          "score": 0.4506120979785919,
+          "aggregation": "final_valid_response_token",
+          "rank": 23
+        },
+        {
+          "layer": 16,
+          "feature_id": 21762,
+          "score": 0.449272096157074,
+          "aggregation": "final_valid_response_token",
+          "rank": 24
+        },
+        {
+          "layer": 16,
+          "feature_id": 12004,
+          "score": 0.4481709897518158,
+          "aggregation": "final_valid_response_token",
+          "rank": 25
+        },
+        {
+          "layer": 16,
+          "feature_id": 1229,
+          "score": 0.4449993968009949,
+          "aggregation": "final_valid_response_token",
+          "rank": 26
+        },
+        {
+          "layer": 16,
+          "feature_id": 3312,
+          "score": 0.4361381530761719,
+          "aggregation": "final_valid_response_token",
+          "rank": 27
+        },
+        {
+          "layer": 16,
+          "feature_id": 15493,
+          "score": 0.43299683928489685,
+          "aggregation": "final_valid_response_token",
+          "rank": 28
+        },
+        {
+          "layer": 16,
+          "feature_id": 5104,
+          "score": 0.42356792092323303,
+          "aggregation": "final_valid_response_token",
+          "rank": 29
+        },
+        {
+          "layer": 16,
+          "feature_id": 13634,
+          "score": 0.42333635687828064,
+          "aggregation": "final_valid_response_token",
+          "rank": 30
+        },
+        {
+          "layer": 16,
+          "feature_id": 23362,
+          "score": 0.41335880756378174,
+          "aggregation": "final_valid_response_token",
+          "rank": 31
+        },
+        {
+          "layer": 16,
+          "feature_id": 27073,
+          "score": 0.4062415659427643,
+          "aggregation": "final_valid_response_token",
+          "rank": 32
+        },
+        {
+          "layer": 16,
+          "feature_id": 29240,
+          "score": 0.40237298607826233,
+          "aggregation": "final_valid_response_token",
+          "rank": 33
+        },
+        {
+          "layer": 16,
+          "feature_id": 24908,
+          "score": 0.3996216952800751,
+          "aggregation": "final_valid_response_token",
+          "rank": 34
+        },
+        {
+          "layer": 16,
+          "feature_id": 10068,
+          "score": 0.39213988184928894,
+          "aggregation": "final_valid_response_token",
+          "rank": 35
+        },
+        {
+          "layer": 16,
+          "feature_id": 4397,
+          "score": 0.3875894844532013,
+          "aggregation": "final_valid_response_token",
+          "rank": 36
+        },
+        {
+          "layer": 16,
+          "feature_id": 12262,
+          "score": 0.38036906719207764,
+          "aggregation": "final_valid_response_token",
+          "rank": 37
+        },
+        {
+          "layer": 16,
+          "feature_id": 24617,
+          "score": 0.3638336956501007,
+          "aggregation": "final_valid_response_token",
+          "rank": 38
+        },
+        {
+          "layer": 16,
+          "feature_id": 10111,
+          "score": 0.36024296283721924,
+          "aggregation": "final_valid_response_token",
+          "rank": 39
+        },
+        {
+          "layer": 16,
+          "feature_id": 27373,
+          "score": 0.35972505807876587,
+          "aggregation": "final_valid_response_token",
+          "rank": 40
+        },
+        {
+          "layer": 16,
+          "feature_id": 31140,
+          "score": 0.3570486307144165,
+          "aggregation": "final_valid_response_token",
+          "rank": 41
+        },
+        {
+          "layer": 16,
+          "feature_id": 4995,
+          "score": 0.3557642102241516,
+          "aggregation": "final_valid_response_token",
+          "rank": 42
+        },
+        {
+          "layer": 16,
+          "feature_id": 26323,
+          "score": 0.353656142950058,
+          "aggregation": "final_valid_response_token",
+          "rank": 43
+        },
+        {
+          "layer": 16,
+          "feature_id": 7032,
+          "score": 0.35328513383865356,
+          "aggregation": "final_valid_response_token",
+          "rank": 44
+        },
+        {
+          "layer": 16,
+          "feature_id": 4049,
+          "score": 0.35327062010765076,
+          "aggregation": "final_valid_response_token",
+          "rank": 45
+        },
+        {
+          "layer": 16,
+          "feature_id": 25988,
+          "score": 0.35248541831970215,
+          "aggregation": "final_valid_response_token",
+          "rank": 46
+        },
+        {
+          "layer": 16,
+          "feature_id": 7928,
+          "score": 0.3510754406452179,
+          "aggregation": "final_valid_response_token",
+          "rank": 47
+        },
+        {
+          "layer": 16,
+          "feature_id": 9465,
+          "score": 0.3510265648365021,
+          "aggregation": "final_valid_response_token",
+          "rank": 48
+        },
+        {
+          "layer": 16,
+          "feature_id": 5742,
+          "score": 0.3506651222705841,
+          "aggregation": "final_valid_response_token",
+          "rank": 49
+        },
+        {
+          "layer": 16,
+          "feature_id": 7177,
+          "score": 0.35039740800857544,
+          "aggregation": "final_valid_response_token",
+          "rank": 50
+        },
+        {
+          "layer": 16,
+          "feature_id": 8861,
+          "score": 1.3188291788101196,
+          "aggregation": "mean_response_token_activation",
+          "rank": 1
+        },
+        {
+          "layer": 16,
+          "feature_id": 22929,
+          "score": 1.3023991584777832,
+          "aggregation": "mean_response_token_activation",
+          "rank": 2
+        },
+        {
+          "layer": 16,
+          "feature_id": 28350,
+          "score": 1.2088861465454102,
+          "aggregation": "mean_response_token_activation",
+          "rank": 3
+        },
+        {
+          "layer": 16,
+          "feature_id": 9546,
+          "score": 1.2074857950210571,
+          "aggregation": "mean_response_token_activation",
+          "rank": 4
+        },
+        {
+          "layer": 16,
+          "feature_id": 12563,
+          "score": 1.1557590961456299,
+          "aggregation": "mean_response_token_activation",
+          "rank": 5
+        },
+        {
+          "layer": 16,
+          "feature_id": 9846,
+          "score": 1.13591730594635,
+          "aggregation": "mean_response_token_activation",
+          "rank": 6
+        },
+        {
+          "layer": 16,
+          "feature_id": 19728,
+          "score": 1.1328684091567993,
+          "aggregation": "mean_response_token_activation",
+          "rank": 7
+        },
+        {
+          "layer": 16,
+          "feature_id": 18286,
+          "score": 1.127089023590088,
+          "aggregation": "mean_response_token_activation",
+          "rank": 8
+        },
+        {
+          "layer": 16,
+          "feature_id": 6044,
+          "score": 1.1010658740997314,
+          "aggregation": "mean_response_token_activation",
+          "rank": 9
+        },
+        {
+          "layer": 16,
+          "feature_id": 14314,
+          "score": 1.086227297782898,
+          "aggregation": "mean_response_token_activation",
+          "rank": 10
+        },
+        {
+          "layer": 16,
+          "feature_id": 5751,
+          "score": 1.0836824178695679,
+          "aggregation": "mean_response_token_activation",
+          "rank": 11
+        },
+        {
+          "layer": 16,
+          "feature_id": 32643,
+          "score": 1.0628212690353394,
+          "aggregation": "mean_response_token_activation",
+          "rank": 12
+        },
+        {
+          "layer": 16,
+          "feature_id": 25791,
+          "score": 1.0477418899536133,
+          "aggregation": "mean_response_token_activation",
+          "rank": 13
+        },
+        {
+          "layer": 16,
+          "feature_id": 26999,
+          "score": 1.0336475372314453,
+          "aggregation": "mean_response_token_activation",
+          "rank": 14
+        },
+        {
+          "layer": 16,
+          "feature_id": 28840,
+          "score": 0.99907386302948,
+          "aggregation": "mean_response_token_activation",
+          "rank": 15
+        },
+        {
+          "layer": 16,
+          "feature_id": 24543,
+          "score": 0.9947830438613892,
+          "aggregation": "mean_response_token_activation",
+          "rank": 16
+        },
+        {
+          "layer": 16,
+          "feature_id": 13813,
+          "score": 0.9682496190071106,
+          "aggregation": "mean_response_token_activation",
+          "rank": 17
+        },
+        {
+          "layer": 16,
+          "feature_id": 28358,
+          "score": 0.9484226703643799,
+          "aggregation": "mean_response_token_activation",
+          "rank": 18
+        },
+        {
+          "layer": 16,
+          "feature_id": 2655,
+          "score": 0.9473963379859924,
+          "aggregation": "mean_response_token_activation",
+          "rank": 19
+        },
+        {
+          "layer": 16,
+          "feature_id": 7527,
+          "score": 0.9453530311584473,
+          "aggregation": "mean_response_token_activation",
+          "rank": 20
+        },
+        {
+          "layer": 16,
+          "feature_id": 26829,
+          "score": 0.944204568862915,
+          "aggregation": "mean_response_token_activation",
+          "rank": 21
+        },
+        {
+          "layer": 16,
+          "feature_id": 24067,
+          "score": 0.9419516324996948,
+          "aggregation": "mean_response_token_activation",
+          "rank": 22
+        },
+        {
+          "layer": 16,
+          "feature_id": 10194,
+          "score": 0.9402199983596802,
+          "aggregation": "mean_response_token_activation",
+          "rank": 23
+        },
+        {
+          "layer": 16,
+          "feature_id": 30815,
+          "score": 0.9330412745475769,
+          "aggregation": "mean_response_token_activation",
+          "rank": 24
+        },
+        {
+          "layer": 16,
+          "feature_id": 21569,
+          "score": 0.9312106370925903,
+          "aggregation": "mean_response_token_activation",
+          "rank": 25
+        },
+        {
+          "layer": 16,
+          "feature_id": 10056,
+          "score": 0.930051863193512,
+          "aggregation": "mean_response_token_activation",
+          "rank": 26
+        },
+        {
+          "layer": 16,
+          "feature_id": 26503,
+          "score": 0.9275068044662476,
+          "aggregation": "mean_response_token_activation",
+          "rank": 27
+        },
+        {
+          "layer": 16,
+          "feature_id": 20297,
+          "score": 0.9264026284217834,
+          "aggregation": "mean_response_token_activation",
+          "rank": 28
+        },
+        {
+          "layer": 16,
+          "feature_id": 18701,
+          "score": 0.9153562188148499,
+          "aggregation": "mean_response_token_activation",
+          "rank": 29
+        },
+        {
+          "layer": 16,
+          "feature_id": 29941,
+          "score": 0.910030722618103,
+          "aggregation": "mean_response_token_activation",
+          "rank": 30
+        },
+        {
+          "layer": 16,
+          "feature_id": 16094,
+          "score": 0.9041202068328857,
+          "aggregation": "mean_response_token_activation",
+          "rank": 31
+        },
+        {
+          "layer": 16,
+          "feature_id": 14832,
+          "score": 0.8983563184738159,
+          "aggregation": "mean_response_token_activation",
+          "rank": 32
+        },
+        {
+          "layer": 16,
+          "feature_id": 30621,
+          "score": 0.8979224562644958,
+          "aggregation": "mean_response_token_activation",
+          "rank": 33
+        },
+        {
+          "layer": 16,
+          "feature_id": 5004,
+          "score": 0.8958767056465149,
+          "aggregation": "mean_response_token_activation",
+          "rank": 34
+        },
+        {
+          "layer": 16,
+          "feature_id": 19086,
+          "score": 0.8838239312171936,
+          "aggregation": "mean_response_token_activation",
+          "rank": 35
+        },
+        {
+          "layer": 16,
+          "feature_id": 55,
+          "score": 0.8707888126373291,
+          "aggregation": "mean_response_token_activation",
+          "rank": 36
+        },
+        {
+          "layer": 16,
+          "feature_id": 20024,
+          "score": 0.8702638745307922,
+          "aggregation": "mean_response_token_activation",
+          "rank": 37
+        },
+        {
+          "layer": 16,
+          "feature_id": 16890,
+          "score": 0.8696794509887695,
+          "aggregation": "mean_response_token_activation",
+          "rank": 38
+        },
+        {
+          "layer": 16,
+          "feature_id": 17045,
+          "score": 0.8696618676185608,
+          "aggregation": "mean_response_token_activation",
+          "rank": 39
+        },
+        {
+          "layer": 16,
+          "feature_id": 17128,
+          "score": 0.8645418286323547,
+          "aggregation": "mean_response_token_activation",
+          "rank": 40
+        },
+        {
+          "layer": 16,
+          "feature_id": 19024,
+          "score": 0.8536372780799866,
+          "aggregation": "mean_response_token_activation",
+          "rank": 41
+        },
+        {
+          "layer": 16,
+          "feature_id": 1652,
+          "score": 0.8530135750770569,
+          "aggregation": "mean_response_token_activation",
+          "rank": 42
+        },
+        {
+          "layer": 16,
+          "feature_id": 31719,
+          "score": 0.8521912693977356,
+          "aggregation": "mean_response_token_activation",
+          "rank": 43
+        },
+        {
+          "layer": 16,
+          "feature_id": 24668,
+          "score": 0.8521384596824646,
+          "aggregation": "mean_response_token_activation",
+          "rank": 44
+        },
+        {
+          "layer": 16,
+          "feature_id": 27668,
+          "score": 0.8510872721672058,
+          "aggregation": "mean_response_token_activation",
+          "rank": 45
+        },
+        {
+          "layer": 16,
+          "feature_id": 9521,
+          "score": 0.8486647605895996,
+          "aggregation": "mean_response_token_activation",
+          "rank": 46
+        },
+        {
+          "layer": 16,
+          "feature_id": 17204,
+          "score": 0.8426018953323364,
+          "aggregation": "mean_response_token_activation",
+          "rank": 47
+        },
+        {
+          "layer": 16,
+          "feature_id": 15207,
+          "score": 0.8398459553718567,
+          "aggregation": "mean_response_token_activation",
+          "rank": 48
+        },
+        {
+          "layer": 16,
+          "feature_id": 32418,
+          "score": 0.8369721174240112,
+          "aggregation": "mean_response_token_activation",
+          "rank": 49
+        },
+        {
+          "layer": 16,
+          "feature_id": 24891,
+          "score": 0.8332833051681519,
+          "aggregation": "mean_response_token_activation",
+          "rank": 50
+        }
+      ],
+      "source": "results\\sae\\empathy\\sae_analysis_20260818T111200Z.json"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "activation_run_id": "20260817T181608Z",
+  "generated_at_utc": "2026-08-17T22:04:45.746710+00:00",
+  "file_count": 18,
+  "total_bytes": 1244754,
+  "files": [
+    {
+      "path": "results/probes/empathy/aggregation_comparison_20260817T181608Z.png",
+      "size_bytes": 96497,
+      "sha256": "f289cdcc18c0fc13aa7b038b626d97ac843c6c6a46ca17a41725833e0d01c1aa"
+    },
+    {
+      "path": "results/probes/empathy/final_valid_response_token_20260817T181608Z.json",
+      "size_bytes": 30859,
+      "sha256": "a391b7fd00dd1ef3e2b8df3fbae973677d71666fc8521f57cd2d856ada5616c9"
+    },
+    {
+      "path": "results/probes/empathy/final_valid_response_token_20260817T181608Z.png",
+      "size_bytes": 169733,
+      "sha256": "9f2d59476d4afb0950f86cce76bbaa4bfb537e168a74d929c692757f408da6ea"
+    },
+    {
+      "path": "results/probes/empathy/final_valid_response_token_permutations_20260817T181608Z.npz",
+      "size_bytes": 126930,
+      "sha256": "ee9e5f43e12a0eac39d9480573cd2d2f2db207e75334f607b2aa171c14b2390e"
+    },
+    {
+      "path": "results/probes/empathy/mean_response_token_activation_20260817T181608Z.json",
+      "size_bytes": 30710,
+      "sha256": "6fbce2025f4303fbadafc3d9342b85d9dd979ef9a43ff95886149e80af767c44"
+    },
+    {
+      "path": "results/probes/empathy/mean_response_token_activation_20260817T181608Z.png",
+      "size_bytes": 130726,
+      "sha256": "e6668fe3ff6a5b780f9981b83c4d4b3f1931a44f85bd4613033313144267e3a4"
+    },
+    {
+      "path": "results/probes/empathy/mean_response_token_activation_permutations_20260817T181608Z.npz",
+      "size_bytes": 120698,
+      "sha256": "420a2e4b5dc3fd95a81cb098fd8cf6b8b5b8b909800c694e2da345bca81225e0"
+    },
+    {
+      "path": "results/probes/empathy/split_20260817T181608Z.json",
+      "size_bytes": 624,
+      "sha256": "c617f70377f07f5154eaabe8e3e8315982150187a9b1ffa49a44ee0ab1e8a9cf"
+    },
+    {
+      "path": "results/probes/metadata/linear_probe_report_20260817T181608Z.md",
+      "size_bytes": 2396,
+      "sha256": "1994f0a86924621b927c095a84a18f30e49a615374313671d73770c3db50f85a"
+    },
+    {
+      "path": "results/probes/metadata/linear_probe_summary_20260817T181608Z.json",
+      "size_bytes": 3054,
+      "sha256": "4841685d6879fca49860ad46cb3f37d5c31b9580ee03743e8ebd813b0952f020"
+    },
+    {
+      "path": "results/probes/motivation/aggregation_comparison_20260817T181608Z.png",
+      "size_bytes": 115978,
+      "sha256": "ada10e30ba48d4467b14811a8de61a575c04b697710c1b3b53537caae3fcf414"
+    },
+    {
+      "path": "results/probes/motivation/final_valid_response_token_20260817T181608Z.json",
+      "size_bytes": 31161,
+      "sha256": "2a3ee3bb346929f1c236abfe23cc2368ad1501e3b6626011377139427e3691e5"
+    },
+    {
+      "path": "results/probes/motivation/final_valid_response_token_20260817T181608Z.png",
+      "size_bytes": 145629,
+      "sha256": "49abac86bd7a526d7959ffb5df4c3aad8b3d60b0396025bf709c6b61eef9dfa0"
+    },
+    {
+      "path": "results/probes/motivation/final_valid_response_token_permutations_20260817T181608Z.npz",
+      "size_bytes": 20962,
+      "sha256": "b7f8c746ea1a416d8b1be564ae5b39f0d1c43992f849d2995220eb01810db6c8"
+    },
+    {
+      "path": "results/probes/motivation/mean_response_token_activation_20260817T181608Z.json",
+      "size_bytes": 30918,
+      "sha256": "0a9d1653ad60992ec371d52a9ee0502907960473768af5408ca8631d57c35653"
+    },
+    {
+      "path": "results/probes/motivation/mean_response_token_activation_20260817T181608Z.png",
+      "size_bytes": 163810,
+      "sha256": "dce7cc487fb2987dd0e9d0938abd0a9137e002079c7870b542faf2797ce8cdcb"
+    },
+    {
+      "path": "results/probes/motivation/mean_response_token_activation_permutations_20260817T181608Z.npz",
+      "size_bytes": 23449,
+      "sha256": "0b3e29c89336de9cf1c9d5aeaeab9597fe4250429c2f9f60f49c165b52055d0c"
+    },
+    {
+      "path": "results/probes/motivation/split_20260817T181608Z.json",
+      "size_bytes": 620,
+      "sha256": "25e2286af46186c82a88bbd1aeae14fc3b9e05d020210cce6549195c69eae9ba"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "activation_run_id": "20260817T181608Z",
+  "faithfulness_equation": "(patched-corrupted)/(clean-corrupted)",
+  "limitations": [
+    "The intervention operationalizes supportiveness through an explicit style instruction and fixed opening-token targets.",
+    "It measures instruction-conditioned first-token behavior, not the quality of a complete generated counselling response."
+  ],
+  "method": "controlled_instruction_counterfactual_residual_stream_patching",
+  "model": "U:\\Mental_Health_Dissertation\\model",
+  "neutral_target": " Okay",
+  "num_hidden_layers": 32,
+  "pair_manifests": {
+    "empathy": {
+      "missing_context_placeholders": 18,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\empathy\\metadata\\pairs_20260818T020527Z.jsonl",
+      "records": 200,
+      "sha256": "8f9d09b9ddefe98e8fa77aa0ce3ba9cb60dbd64662dea5aa2c68c7ec379d233e",
+      "truncated": 0
+    },
+    "motivation": {
+      "missing_context_placeholders": 6,
+      "path": "U:\\Mental_Health_Dissertation\\results\\causal_patching\\motivation\\metadata\\pairs_20260818T020527Z.jsonl",
+      "records": 200,
+      "sha256": "721ec8530ce661a16f52f30be49ff27cc103bbb246ddb7f85355842ebf9970d3",
+      "truncated": 4
+    }
+  },
+  "run_id": "20260818T020527Z",
+  "status": "invalidated_full_tensor_patch_cannot_localize_layers",
+  "supportive_target": " I",
+  "tokenizer": {
+    "bos_token": "<|begin_of_text|>",
+    "bos_token_id": 128000,
+    "class": "PreTrainedTokenizerFast",
+    "eos_token": "<|eot_id|>",
+    "eos_token_id": 128009,
+    "model_max_length": 131072,
+    "pad_token": null,
+    "pad_token_id": null,
+    "path": "U:\\Mental_Health_Dissertation\\model",
+    "vocab_size_base": 128000,
+    "vocab_size_total": 128256
+  }
+}

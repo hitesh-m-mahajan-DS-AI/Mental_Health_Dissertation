@@ -1,0 +1,8 @@
+{
+  "summary_kind": "corrected_causal_patching",
+  "run_id": "corrected-run",
+  "datasets": {
+    "motivation": {"records": 200},
+    "empathy": {"records": 200}
+  }
+}

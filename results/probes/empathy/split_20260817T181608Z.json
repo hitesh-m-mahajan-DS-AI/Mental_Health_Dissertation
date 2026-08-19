@@ -1,0 +1,33 @@
+{
+  "algorithm": "seeded_group_assignment_search",
+  "candidate_assignments": 100000,
+  "grouping_verified_disjoint": true,
+  "objective_score": 0.015994254157470852,
+  "seed": 42,
+  "splits": {
+    "test": {
+      "examples": 30,
+      "groups": 27,
+      "label_counts": {
+        "0": 20,
+        "1": 10
+      }
+    },
+    "train": {
+      "examples": 140,
+      "groups": 132,
+      "label_counts": {
+        "0": 92,
+        "1": 48
+      }
+    },
+    "validation": {
+      "examples": 30,
+      "groups": 28,
+      "label_counts": {
+        "0": 20,
+        "1": 10
+      }
+    }
+  }
+}
